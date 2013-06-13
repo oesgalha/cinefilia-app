@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title Cinefilia
+    %link{rel: 'stylesheet', type:'text/css', href: 'css/jquery.mobile-1.3.1.min.css'}
+    %link{rel: 'stylesheet', type:'text/css', href: 'css/cinefilia.css'}
+    %script{src: 'js/jquery-2.0.2.min.js'}
+    %script{src: 'js/jquery.mobile-1.3.1.min.js', type: 'application/x-javascript', charset: 'utf-8'}
+    %script{src: 'js/swipe.js'}
+    %script{src: 'js/cinefilia.js'}
+    %meta{content: 'text/html; charset=UTF-8', http: {equiv: 'Content-Type'}}
+  %body
+    %div#main_page{data: {role: 'page', theme: 'a'}}
+      %div{data: {role: 'header'}}
+        %h1 Cinefilia
+      %div{data: {role: 'content'}}
+        #slider.swipe
+          .swipe-wrap#posters-holder
+            %div.movie-poster
+              %img{src: 'http://ia.media-imdb.com/images/M/MV5BMjQ0MTE1NDAwNl5BMl5BanBnXkFtZTYwNzMxMDE5._V1_SY317_CR1,0,214,317_.jpg'}
+            %div.movie-poster
+              %img{src: 'http://ia.media-imdb.com/images/M/MV5BNzA1MTYwNjUyOF5BMl5BanBnXkFtZTcwNDQ3MDQ2OQ@@._V1_SY317_CR12,0,214,317_.jpg'}
+            %div.movie-poster
+              %img{src: 'http://ia.media-imdb.com/images/M/MV5BMTQ2MzAxODI3M15BMl5BanBnXkFtZTcwNTE2MjAwMQ@@._V1_SY317_CR7,0,214,317_.jpg'}
+      %div{data: {role: 'footer'}}
+        %div{data: {role: 'navbar', iconpos: 'left'}}
+          %ul
+            %li
+              %a{href: 'favoritos.html'} Favoritos
+            %li
+              %a{href: 'cinemas.html'} Cinemas
+            %li
+              %a.ui-btn-active.ui-state-persist{href: 'filmes.html'} Filmes
+            %li
+              %a{href: 'pesquisar.html'} Pesquisar

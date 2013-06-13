@@ -15,3 +15,8 @@
   width:100%;
   position: relative;
 }
+
+.movie-poster {
+  text-align: center;
+  overflow: hidden;
+}
