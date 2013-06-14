@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <style type="text/css" media="screen">
+        	@import "css/jquery.mobile-1.3.1.min.css";
+        	@import "css/cinefilia.css";
+        </style>
+		<script src="js/jquery-2.0.2.min.js"></script>				
+        <script src="js/jquery.mobile-1.3.1.min.js" type="application/x-javascript" charset="utf-8"></script>			
+        <script src="js/swipe.js"></script>		
+        <title>Cinefilia</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+		<div data-role="page" id="main_page" data-theme="a">
+			<div data-role="header">
+		    	<h1>Cinefilia</h1>
+		    </div>
+			<div data-role="content" >	
+				
+				<div id='search'>
+					<div id='name'>
+						<input type='text' name='movieName' id='movieName'>
+					</div>
+					<div id='rating'>
+						<button name='L' data-inline='true' value='0'>L</button>
+						<button name='10' data-inline='true' value='10'>10</button>
+						<button name='12' data-inline='true' value='12'>12</button>
+						<button name='14' data-inline='true' value='14'>14</button>
+						<button name='16' data-inline='true' value='16'>16</button>
+						<button name='18' data-inline='true' value='18'>18</button>
+					</div>
+					<!-- <div id='name'>
+						<input type='text' name='movieName' id='movieName' />
+					</div> -->
+				
+				</div>
+				
+			</div>
+			<div data-role="footer">
+				<div data-role="navbar" data-iconpos="left">
+					<ul>
+						<li><a href="favoritos.html">Favoritos</a></li>
+						<li><a href="cinemas.html">Cinemas</a></li>
+						<li><a href="filmes.html">Filmes</a></li>
+						<li><a href="pesquisar.html">Pesquisar</a></li>
+					</ul>
+				</div>
+			</div>
+        </div>
+        <script>
+       		$(document).ready(function(){
+	        	//colocar aqui funcoes da pagina de busca
+	        	
+	        	window.mySwipe = new Swipe(document.getElementById('slider'), {
+				  startSlide: 0,
+				  speed: 400,
+				  auto: 3000,
+				  continuous: true,
+				  disableScroll: false,
+				  stopPropagation: false
+				});
+	        });
+        </script>
+    </body>
+</html>
