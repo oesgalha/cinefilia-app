@@ -20,7 +20,11 @@ $(document).ready(function(){
     startSlider();
   };
 
-  $("#main_page").on("pageinit", startSlider());
+  $(window).hashchange(function() {
+    if (location.hash == "#main_page" || location.hash == "") {
+      populatePosters();
+    }
+  }); 
 
   // Popula a lista de filmes
   var populateMoviesList = function() {
@@ -28,7 +32,6 @@ $(document).ready(function(){
     $.each(window.moviesData, function(id, movie) {
       $('<li><a class="retangular-movie-poster" href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_list-mp')
     });
-    $("#movies_list-mp").listview("refresh");
   }
 
   // Popula a lista de cinemas
@@ -37,7 +40,6 @@ $(document).ready(function(){
     $.each(window.cinemasData, function(id, cinema) {
       $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#cinemas_list-mp')
     });
-    $("#cinemas_list-mp").listview("refresh");
   }
 
   // Carregar informações dos filmes
