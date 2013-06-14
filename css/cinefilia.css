@@ -21,8 +21,8 @@
   overflow: hidden;
 }
 
-.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb {
-  padding-left: 70px;
+.retangular-movie-poster {
+  padding-left: 70px !important;
 }
 
 .cinefilia-bubble {

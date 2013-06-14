@@ -22,11 +22,22 @@ $(document).ready(function(){
 
   $("#main_page").on("pageinit", startSlider());
 
+  // Popula a lista de filmes
   var populateMoviesList = function() {
     $('#movies_list-mp').html('');
     $.each(window.moviesData, function(id, movie) {
-      $('<li><a href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_list-mp')
+      $('<li><a class="retangular-movie-poster" href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_list-mp')
     });
+    $("#movies_list-mp").listview("refresh");
+  }
+
+  // Popula a lista de cinemas
+  var populateCinemasList = function() {
+    $('#cinemas_list-mp').html('');
+    $.each(window.cinemasData, function(id, cinema) {
+      $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#cinemas_list-mp')
+    });
+    $("#cinemas_list-mp").listview("refresh");
   }
 
   // Carregar informações dos filmes
@@ -40,4 +51,16 @@ $(document).ready(function(){
       populateMoviesList();
     }
   });
+  
+  // Carregar informações dos cinemas
+  $.ajax({
+    url: 'http://www.students.ic.unicamp.br/~ra108231/cinefilia_supreme_api/cinemas.json',
+    dataType: 'jsonp',
+    jsonpCallback: 'cineffiliacinemascache',
+    success: function(data){
+      window.cinemasData = data;
+      populateCinemasList();
+    }
+  });
+
 });
