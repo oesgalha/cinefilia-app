@@ -12,7 +12,8 @@
   </head>
   <body>
     <div data-role='page' data-theme='a' id='main_page'>
-      <div data-role='header'>
+      <div data-role='header' data-id="header">
+        <a href='#main_page' data-icon='home' data-iconpos="notext"></a>	
         <h1>Cinefilia</h1>
       </div>
       <div data-role='content'>
@@ -20,7 +21,7 @@
           <div class='swipe-wrap' id='posters-holder'></div>
         </div>
       </div>
-      <div data-role='footer'>
+      <div data-role='footer' data-id="footer">
         <div data-iconpos='left' data-role='navbar'>
           <ul>
             <li>
@@ -30,7 +31,35 @@
               <a href='cinemas.html'>Cinemas</a>
             </li>
             <li>
-              <a class='ui-btn-active ui-state-persist' href='filmes.html'>Filmes</a>
+              <a href='#movies_page'>Filmes</a>
+            </li>
+            <li>
+              <a href='pesquisar.html'>Pesquisar</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role='page' data-theme='a' id='movies_page'>
+      <div data-role='header' data-id="header">
+        <a href='#main_page' data-icon='home' data-iconpos="notext"></a>	
+        <h1>Cinefilia</h1>
+      </div>
+      <div data-role='content'>
+	      <ul id='movies_list-mp' data-role="listview" data-filter="true" data-filter-theme="a">
+	      </ul>
+      </div>
+      <div data-role='footer' data-id="footer">
+        <div data-iconpos='left' data-role='navbar'>
+          <ul>
+            <li>
+              <a href='favoritos.html'>Favoritos</a>
+            </li>
+            <li>
+              <a href='cinemas.html'>Cinemas</a>
+            </li>
+            <li>
+              <a class='ui-btn-active ui-state-persist' href='#movies_page'>Filmes</a>
             </li>
             <li>
               <a href='pesquisar.html'>Pesquisar</a>

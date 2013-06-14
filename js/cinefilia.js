@@ -16,6 +16,13 @@ $(document).ready(function(){
     }); 
   };
 
+  var populateMoviesList = function() {
+    $('#movies_list-mp').html('');
+    $.each(window.moviesData, function(id, movie) {
+      $('<li><a href="#movie_details"><img src="' + movie.img + '"/>' + movie.name + '</a></li>').appendTo('#movies_list-mp')
+    });
+  }
+
   // Carregar informações dos filmes
   $.ajax({
     url: 'http://www.students.ic.unicamp.br/~ra108231/cinefilia_supreme_api/movies.json',
@@ -24,6 +31,7 @@ $(document).ready(function(){
     success: function(data){
       window.moviesData = data;
       populatePosters();
+      populateMoviesList();
     }
   });
 });
