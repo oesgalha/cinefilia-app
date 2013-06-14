@@ -1,6 +1,10 @@
 $(document).ready(function(){
 
+  // (Re)Iniciar o slider de posters
   var startSlider = function() {
+    if (window.postersSwipe != null) {
+      window.postersSwipe.kill;
+    }
     window.postersSwipe = new Swipe(document.getElementById('slider'), {
       startSlide: 0,
       speed: 400,
@@ -22,7 +26,7 @@ $(document).ready(function(){
 
   $(window).hashchange(function() {
     if (location.hash == "#main_page" || location.hash == "") {
-      populatePosters();
+      startSlider();
     }
   }); 
 
