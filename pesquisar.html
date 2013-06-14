@@ -23,18 +23,27 @@
 					<div id='name'>
 						<input type='text' name='movieName' id='movieName'>
 					</div>
-					<div id='rating'>
-						<button name='L' data-inline='true' value='0'>L</button>
-						<button name='10' data-inline='true' value='10'>10</button>
-						<button name='12' data-inline='true' value='12'>12</button>
-						<button name='14' data-inline='true' value='14'>14</button>
-						<button name='16' data-inline='true' value='16'>16</button>
-						<button name='18' data-inline='true' value='18'>18</button>
+					<div id='rating'  data-role='controlgroup' data-type='horizontal' data-mini='true'>
+						<button id='rL' data-inline='true'>L</button>
+						<button id='r10' data-inline='true'>10</button>
+						<button id='r12' data-inline='true'>12</button>
+						<button id='r14' data-inline='true'>14</button>
+						<button id='r16' data-inline='true'>16</button>
+						<button id='r18' data-inline='true'>18</button>
 					</div>
-					<!-- <div id='name'>
-						<input type='text' name='movieName' id='movieName' />
-					</div> -->
-				
+					<div id='language' data-role='controlgroup' data-type='horizontal' data-mini='true'>
+						<button id='ldub' data-inline='true'>DUB</button>
+						<button id='lleg' data-inline='true'>LEG</button>
+						<button id='lnac' data-inline='true'>NAC</button>
+					</div>
+					<div id='other' data-role='controlgroup' data-type='horizontal' data-mini='true'>
+						<button id='o2d' data-inline='true'>2D</button>
+						<button id='o3d' data-inline='true'>3D</button>
+						<button id='othx' data-inline='true'>THX</button>
+					</div>			
+					<div id='search'>
+						<button id='src' data-icon='search'>Pesquisar</button>
+					</div>
 				</div>
 				
 			</div>
@@ -44,16 +53,21 @@
 						<li><a href="favoritos.html">Favoritos</a></li>
 						<li><a href="cinemas.html">Cinemas</a></li>
 						<li><a href="filmes.html">Filmes</a></li>
-						<li><a href="pesquisar.html">Pesquisar</a></li>
+						<li><a href="pesquisar.html">Busca</a></li>
 					</ul>
 				</div>
 			</div>
         </div>
         <script>
+		
+			var rating = {rL:false, r10:false, r12:false, r14:false, r16:false, r18:false};
+			var language = {ldub:false, lleg:false, lnac:false};
+			var other = {o2d:false, o3d:false, othx:false};
+		
        		$(document).ready(function(){
 	        	//colocar aqui funcoes da pagina de busca
 	        	
-	        	window.mySwipe = new Swipe(document.getElementById('slider'), {
+				window.mySwipe = new Swipe(document.getElementById('slider'), {
 				  startSlide: 0,
 				  speed: 400,
 				  auto: 3000,
@@ -62,6 +76,40 @@
 				  stopPropagation: false
 				});
 	        });
+			
+			$(":button").click(this, function() {
+				if (this.id != "src"){
+					var type = this.id.substring(0,1)
+					var type2 = this.id
+				
+				switch(type){	
+					case 'r':
+						rating[type2] = !rating[type2]
+						break;
+					case 'l':
+						language[type2] = !language[type2]
+						break;
+					case 'o':
+						other[type2] = !other[type2]
+						break;
+					}
+				}
+			})
+			
+			$("#src").click(function(){
+			for (each in rating){
+				alert(each+' : '+rating[each]);
+			}
+			for (each in language){
+				alert(each+' : '+language[each]);
+			}
+			for (each in other){
+				alert(each+' : '+other[each]);
+			}
+			
+			})
+			
+			
         </script>
     </body>
 </html>
