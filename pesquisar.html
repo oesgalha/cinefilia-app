@@ -20,30 +20,38 @@
 			<div data-role="content" >	
 				
 				<div id='search'>
+				<form>
 					<div id='name'>
-						<input type='text' name='movieName' id='movieName'>
+						<input type='text' id='movieName'>
 					</div>
-					<div id='rating'  data-role='controlgroup' data-type='horizontal' data-mini='true'>
-						<button id='rL' data-inline='true'>L</button>
-						<button id='r10' data-inline='true'>10</button>
-						<button id='r12' data-inline='true'>12</button>
-						<button id='r14' data-inline='true'>14</button>
-						<button id='r16' data-inline='true'>16</button>
-						<button id='r18' data-inline='true'>18</button>
+					<div id='rating' >
+						<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+							<input type='checkbox' id='rL' /><label for="rL">Livre</label>
+							<input type='checkbox' id='r10' /><label for="r10">10</label>
+							<input type='checkbox' id='r12' /><label for="r12">12</label>
+							<input type='checkbox' id='r14' /><label for="r14">14</label>
+							<input type='checkbox' id='r16' /><label for="r16">16</label>
+							<input type='checkbox' id='r18' /><label for="r18">18</label>
+						</fieldset>
 					</div>
-					<div id='language' data-role='controlgroup' data-type='horizontal' data-mini='true'>
-						<button id='ldub' data-inline='true'>DUB</button>
-						<button id='lleg' data-inline='true'>LEG</button>
-						<button id='lnac' data-inline='true'>NAC</button>
+					<div id='language'>
+						<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+							<input type='checkbox' id='ldub' /><label for="ldub">DUB</label>
+							<input type='checkbox' id='lleg' /><label for="lleg">LEG</label>
+							<input type='checkbox' id='lnac' /><label for="lnac">NAC</label>
+						</fieldset>	
 					</div>
-					<div id='other' data-role='controlgroup' data-type='horizontal' data-mini='true'>
-						<button id='o2d' data-inline='true'>2D</button>
-						<button id='o3d' data-inline='true'>3D</button>
-						<button id='othx' data-inline='true'>THX</button>
+					<div id='other'>
+						<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+							<input type='checkbox' id='o2d' /><label for="o2d">2D</label>
+							<input type='checkbox' id='o3d' /><label for="o3d">3D</label>
+							<input type='checkbox' id='othx' /><label for="othx">THX</label>
+						</fieldset>	
 					</div>			
 					<div id='search'>
 						<button id='src' data-icon='search'>Pesquisar</button>
 					</div>
+				</form>	
 				</div>
 				
 			</div>
@@ -66,18 +74,11 @@
 		
        		$(document).ready(function(){
 	        	//colocar aqui funcoes da pagina de busca
-	        	
-				window.mySwipe = new Swipe(document.getElementById('slider'), {
-				  startSlide: 0,
-				  speed: 400,
-				  auto: 3000,
-				  continuous: true,
-				  disableScroll: false,
-				  stopPropagation: false
-				});
+
 	        });
 			
-			$(":button").click(this, function() {
+			$(":checkbox").click(this, function(event) {
+			
 				if (this.id != "src"){
 					var type = this.id.substring(0,1)
 					var type2 = this.id
@@ -94,6 +95,7 @@
 						break;
 					}
 				}
+				
 			})
 			
 			$("#src").click(function(){
@@ -105,9 +107,7 @@
 			}
 			for (each in other){
 				alert(each+' : '+other[each]);
-			}
-			
-			})
+			}})
 			
 			
         </script>
