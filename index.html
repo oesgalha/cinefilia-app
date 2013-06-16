@@ -34,7 +34,7 @@
               <a href='#movies_page'>Filmes</a>
             </li>
             <li>
-              <a href='pesquisar.html'>Pesquisar</a>
+              <a href='#search_page'>Busca</a>
             </li>
           </ul>
         </div>
@@ -62,7 +62,7 @@
               <a class='ui-btn-active ui-state-persist' href='#movies_page'>Filmes</a>
             </li>
             <li>
-              <a href='pesquisar.html'>Pesquisar</a>
+              <a href='#search_page'>Busca</a>
             </li>
           </ul>
         </div>
@@ -90,7 +90,7 @@
               <a href='#movies_page'>Filmes</a>
             </li>
             <li>
-              <a href='pesquisar.html'>Pesquisar</a>
+              <a href='#search_page'>Busca</a>
             </li>
           </ul>
         </div>
@@ -102,8 +102,7 @@
         <h1>Cinefilia</h1>
       </div>
       <div data-role='content'>
-	      
-      </div>
+	    </div>
       <div data-role='footer' data-id="footer">
         <div data-iconpos='left' data-role='navbar'>
           <ul>
@@ -117,11 +116,77 @@
               <a href='#movies_page'>Filmes</a>
             </li>
             <li>
-              <a href='pesquisar.html'>Pesquisar</a>
+              <a href='#search_page'>Busca</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
+    <div data-role='page' data-theme='a' id='search_page'>
+      <div data-role='header' data-id="header">
+        <a href='#main_page' data-icon='home' data-iconpos="notext"></a>	
+        <h1>Cinefilia</h1>
+      </div>
+      
+      
+			<div data-role="content" >	
+				<div id='search'>
+					<form>
+						<div id='name'>
+							<input type='text' id='movieName'>
+						</div>
+						<div id='rating' >
+							<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+								<input type='checkbox' id='rL' /><label for="rL">Livre</label>
+								<input type='checkbox' id='r10' /><label for="r10">10</label>
+								<input type='checkbox' id='r12' /><label for="r12">12</label>
+								<input type='checkbox' id='r14' /><label for="r14">14</label>
+								<input type='checkbox' id='r16' /><label for="r16">16</label>
+								<input type='checkbox' id='r18' /><label for="r18">18</label>
+							</fieldset>
+						</div>
+						<div id='language'>
+							<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+								<input type='checkbox' id='ldub' /><label for="ldub">DUB</label>
+								<input type='checkbox' id='lleg' /><label for="lleg">LEG</label>
+								<input type='checkbox' id='lnac' /><label for="lnac">NAC</label>
+							</fieldset>	
+						</div>
+						<div id='other'>
+							<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+								<input type='checkbox' id='o2d' /><label for="o2d">2D</label>
+								<input type='checkbox' id='o3d' /><label for="o3d">3D</label>
+								<input type='checkbox' id='othx' /><label for="othx">THX</label>
+							</fieldset>	
+						</div>			
+						<div id='search'>
+							<button id='src' data-icon='search'>Pesquisar</button>
+						</div>
+					</form>	
+				</div>
+				
+			</div>
+      
+      
+      <div data-role='footer' data-id="footer">
+        <div data-iconpos='left' data-role='navbar'>
+          <ul>
+            <li>
+              <a href='favoritos.html'>Favoritos</a>
+            </li>
+            <li>
+              <a href='#cinemas_page'>Cinemas</a>
+            </li>
+            <li>
+              <a href='#movies_page'>Filmes</a>
+            </li>
+            <li>
+              <a class='ui-btn-active ui-state-persist' href='#search_page'>Busca</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	
   </body>
 </html>

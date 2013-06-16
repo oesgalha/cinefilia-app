@@ -68,5 +68,43 @@ $(document).ready(function(){
       populateCinemasList();
     }
   });
+  
+  //coisas em desenvolvimento pra busca ... CAN'T TOUCH DIS XD
+  //se tiver atrapalhando aí no seu, comente essa parte
+  var rating = {rL:false, r10:false, r12:false, r14:false, r16:false, r18:false};
+	var language = {ldub:false, lleg:false, lnac:false};
+	var other = {o2d:false, o3d:false, othx:false};
+		
+  $(":checkbox").click(this, function(event) {
+		var type = this.id.substring(0,1)
+		var type2 = this.id
+				
+		switch(type){	
+      case 'r':
+        rating[type2] = !rating[type2]
+        break;
+      case 'l':
+        language[type2] = !language[type2]
+        break;
+      case 'o':
+        other[type2] = !other[type2]
+        break;
+      }
+		})
+			
+  $("#src").click(function(){
+    for (each in rating){
+      alert(each+' : '+rating[each]);
+    }
+    for (each in language){
+      alert(each+' : '+language[each]);
+    }
+    for (each in other){
+      alert(each+' : '+other[each]);
+    }
+  })
+  
+  // end of cruel dragons
+  
 
 });
