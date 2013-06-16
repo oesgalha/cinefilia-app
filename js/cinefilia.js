@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
   // (Re)Iniciar o slider de posters
+ 
   var startSlider = function() {
     if (window.postersSwipe != null) {
       window.postersSwipe.kill;
@@ -71,18 +72,19 @@ $(document).ready(function(){
   
   //coisas em desenvolvimento pra busca ... CAN'T TOUCH DIS XD
   //se tiver atrapalhando aí no seu, comente essa parte
-  var rating = {rL:false, r10:false, r12:false, r14:false, r16:false, r18:false};
+  var maxRating = 18;
 	var language = {ldub:false, lleg:false, lnac:false};
 	var other = {o2d:false, o3d:false, othx:false};
 		
-  $(":checkbox").click(this, function(event) {
+  $(":radio").click(this, function()  {
+      maxRating = this.id
+  });  
+    
+  $(":checkbox").click(this, function() {
 		var type = this.id.substring(0,1)
 		var type2 = this.id
 				
 		switch(type){	
-      case 'r':
-        rating[type2] = !rating[type2]
-        break;
       case 'l':
         language[type2] = !language[type2]
         break;
@@ -93,17 +95,35 @@ $(document).ready(function(){
 		})
 			
   $("#src").click(function(){
-    for (each in rating){
-      alert(each+' : '+rating[each]);
-    }
-    for (each in language){
-      alert(each+' : '+language[each]);
-    }
-    for (each in other){
-      alert(each+' : '+other[each]);
-    }
+    //filtra os filmes
+    clearSearch();
+    var movieName = $("#movieName").val()
+    
+    $.each(window.moviesData, function(id, movie) {
+      if (movie.name.indexOf(movieName) != -1){
+        addMoviesToSearchList(movie);
+      }
+      else if (movie.rat <= maxRating){
+        addMoviesToSearchList(movie);
+      }
+    })
+    
+    //verifica nome do filme
+    //verifica classificação indicativa
+    //verifica outros detalhes
   })
   
+  //reseta lista de busca
+  var clearSearch = function() {
+    $('#movies_search_list-mp').html('');
+  }
+  
+  // Adiciona filme a lista de busca
+  var addMoviesToSearchList = function(movie) {
+    $('<li><a class="retangular-movie-poster" href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp')
+  };
+    
+    
   // end of cruel dragons
   
 
