@@ -78,22 +78,42 @@ $(document).ready(function(){
       populatePosters();
       populateMoviesList();
       startTest();
+      localStorage.moviesData = JSON.stringify(data);
+      loadCinemas();
+    },
+    error: function(){
+      alert("nao");
+      window.moviesData = JSON.parse(localStorage.moviesData);
+      populatePosters();
+      populateMoviesList();
+      startTest();
+      loadCinemas();
     }
   });
   
-  // Carregar informações dos cinemas
-  $.ajax({
-    url: 'http://cinefilia.freetzi.com/json/cinemas.json',
-    dataType: 'jsonp',
-    jsonpCallback: 'cineffiliacinemascache',
-    async: false,
-    success: function(data){
-      window.cinemasData = data;
-      populateCinemasList();
-      populateSessionsList();
-    }
-  });
   
+  var loadCinemas = function(){
+    // Carregar informações dos cinemas
+    $.ajax({
+      url: 'http://cinefilia.freetzi.com/json/cinemas.json',
+      dataType: 'jsonp',
+      jsonpCallback: 'cineffiliacinemascache',
+      async: false,
+      success: function(data){
+        window.cinemasData = data;
+        populateCinemasList();
+        populateSessionsList();
+        localStorage.cinemasData = JSON.stringify(data);
+      },
+      error: function(){
+        alert("nao");
+        window.cinemasData = JSON.parse(localStorage.cinemasData);
+        populatePosters();
+        populateMoviesList();
+        startTest();
+      }
+    });
+  }
   //coisas em desenvolvimento pra busca ... CAN'T TOUCH DIS XD
   //se tiver atrapalhando aí no seu, comente essa parte
   var maxRating = 18;
