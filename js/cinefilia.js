@@ -69,10 +69,10 @@ $(document).ready(function(){
   
   // Carregar informações dos filmes
   $.ajax({
-    url: 'http://192.168.0.13/helper-cinefilia/movies.json',
-    async: false,
+    url: 'http://cinefilia.freetzi.com/json/movies.json',
     dataType: 'jsonp',
     jsonpCallback: 'cineffiliamoviescache',
+    async: false,
     success: function(data){
       window.moviesData = data;
       populatePosters();
@@ -83,10 +83,10 @@ $(document).ready(function(){
   
   // Carregar informações dos cinemas
   $.ajax({
-    url: 'http://192.168.0.13/helper-cinefilia/cinemas.json',
+    url: 'http://cinefilia.freetzi.com/json/cinemas.json',
     dataType: 'jsonp',
-    async: false,
     jsonpCallback: 'cineffiliacinemascache',
+    async: false,
     success: function(data){
       window.cinemasData = data;
       populateCinemasList();
