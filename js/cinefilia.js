@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   // (Re)Iniciar o slider de posters
- window.moviesList = new Array();
+  window.moviesList = new Array();
  
   var startSlider = function() {
     if (window.postersSwipe != null) {
@@ -204,6 +204,7 @@ $(document).ready(function(){
   // Adiciona filme a lista de busca
   var addMoviesToSearchList = function(movie) {
     $('<li><a class="retangular-movie-poster" href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp')
+    $('#movies_search_list-mp').listview('refresh');
   };
     
     
