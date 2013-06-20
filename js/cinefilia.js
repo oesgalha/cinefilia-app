@@ -49,19 +49,20 @@ $(document).ready(function(){
 
   // Carregar informações dos filmes
   $.ajax({
-    url: 'http://www.students.ic.unicamp.br/~ra108231/cinefilia_supreme_api/movies.json',
+    url: 'http://192.168.0.13/helper-cinefilia/movies.json',
     dataType: 'jsonp',
     jsonpCallback: 'cineffiliamoviescache',
     success: function(data){
       window.moviesData = data;
       populatePosters();
       populateMoviesList();
+      startTest();
     }
   });
   
   // Carregar informações dos cinemas
   $.ajax({
-    url: 'http://www.students.ic.unicamp.br/~ra108231/cinefilia_supreme_api/cinemas.json',
+    url: 'http://192.168.0.13/helper-cinefilia/cinemas.json',
     dataType: 'jsonp',
     jsonpCallback: 'cineffiliacinemascache',
     success: function(data){
@@ -94,10 +95,10 @@ $(document).ready(function(){
       }
 		})
 			
-  $("[name='exit']").click(function(){
+  $('[name="exit"]').click(function(){
     navigator.app.exitApp()
   })
-      
+    
   $("#src").click(function(){
     //filtra os filmes
     clearSearch();
@@ -164,3 +165,33 @@ $(document).ready(function(){
   
 
 });
+
+var startTest = function() {
+      
+			$('body').imagesLoaded(function($images, $proper, $broken ) {
+
+				// see console output for debug info
+				ImgCache.options.debug = true;
+				ImgCache.options.usePersistentCache = true;
+	
+				ImgCache.init(function() {
+					// 1. cache images
+					for (var i = 0; i < $proper.length; i++) {
+						ImgCache.cacheFile($($proper[i]).attr('src'));
+					}
+					// 2. broken images get replaced
+					for (var i = 0; i < $broken.length; i++) {
+						ImgCache.useCachedFile($($broken[i]));
+					}
+
+				});
+			});
+		};
+
+if (typeof(cordova) !== 'undefined') {
+  // cordova test
+  document.addEventListener('deviceready', startTest, false);
+} else {
+  // normal browser test
+  $(document).ready(startTest);
+}
