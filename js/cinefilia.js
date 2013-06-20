@@ -128,49 +128,52 @@ $(document).ready(function(){
     var movieName = $("#movieName").val()
     var initialList = new Array();
     
-    var search_language = ((language[ldub] != language[lleg])  || (language[ldub] != language[lnac]) || (language[ldub] != language[lnac]))
-    var search_dimension = (other[o2d] != other[o3d])
+    var search_language = ((language.ldub != language.lleg)  || (language.ldub != language.lnac) || (language.lleg != language.lnac))
+    var search_dimension = (other.o2d != other.o3d)
     
     var search_language_array = new Array();
     if (search_language){
-      if (language[ldub]) search_language_array.push('DUB');
-      if (language[lleg]) search_language_array.push('LEG');
-      if (language[lnac]) search_language_array.push('NAC');
+      if (language.ldub) search_language_array.push('DUB');
+      if (language.lleg) search_language_array.push('LEG');
+      if (language.lnac) search_language_array.push('NAC');
     }
     
     var required_array = Array()
     if ((search_dimension)){
-      other[o2d] ? required_array.push('2D') : required_array.push('3D');
+      other.o2d ? required_array.push('2D') : required_array.push('3D');
     }
-    if (other[othx]) required_array.push('THX');
-    if (other[opre]) required_array.push('PRE');
+    if (other.othx) required_array.push('THX');
+    if (other.opre) required_array.push('PRE');
     
     $.each(window.moviesData, function(id, movie) {
-      if ((movieName!='' && (movie.name.indexOf(movieName) != -1) && (movie.rat <= maxRating))
+      if ((movieName!='' && (movie.name.toUpperCase().indexOf(movieName.toUpperCase()) != -1) && (movie.rat <= maxRating))
         ||(movieName=='' && (movie.rat <= maxRating))){
         initialList.push(movie)
       }
     })
     
-    var show = false
-    for (movie in initialList){
+    $.each(initialList, function(idMovie, movie) {
+      show = false
       //verifica se tem um dos idiomas de search_language_array
-      for (each in search_language_array){
-        if (movie.lang == each)
-          show = true;
+      if (search_language_array.length>0){
+        for (each in search_language_array){
+          if (movie[search_language_array[each]] != undefined && movie[search_language_array[each]])
+            show = true;
+        }
       }
+      else {show = true;}  
       
       if (show){
         //verifica se tem todos de required_array
         for (each in required_array){
-          if (!movie.each)
+          if (movie[required_array[each]] == undefined || !movie[required_array[each]])
             show = false;
         }
         if (show){
           addMoviesToSearchList(movie);
         }
       }
-    }
+    });
   })
   
   //reseta lista de busca

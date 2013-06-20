@@ -60,7 +60,7 @@ cineffiliacinemascache({
         },
         "21:00" : {
           "filme" : 3,
-          "info" : ["DUB", "2D", "VIP"]
+          "info" : ["DUB", "2D", "PRE"]
         }
       }
     },
