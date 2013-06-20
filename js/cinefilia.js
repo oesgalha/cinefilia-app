@@ -204,7 +204,9 @@ $(document).ready(function(){
   // Adiciona filme a lista de busca
   var addMoviesToSearchList = function(movie) {
     $('<li><a class="retangular-movie-poster" href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp')
-    $('#movies_search_list-mp').listview('refresh');
+    if ($('#movies_search_list-mp').hasClass('ui-listview')) {
+      $('#movies_search_list-mp').listview('refresh');
+    }
   };
     
     
