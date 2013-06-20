@@ -135,12 +135,24 @@ $(document).ready(function(){
       case 'o':
         other[type2] = !other[type2]
         break;
-      }
-		})
+    }
+	})
 			
-  $('[name="exit"]').click(function(){
-    navigator.app.exitApp()
-  })
+  // Listener app startado
+  document.addEventListener("deviceready", onDR, false);
+
+  var onDR = function(){
+    // App startado
+    document.addEventListener("backbutton", backKeyDown, true);
+    $('[name="exit"]').click(function(){
+      navigator.app.exitApp();
+    });
+    var backKeyDown = function() { 
+      if (location.hash == "#main_page" || location.hash == "") {
+        navigator.app.exitApp();
+      }
+    }
+  }
     
   $("#src").click(function(){
     //filtra os filmes
@@ -194,7 +206,7 @@ $(document).ready(function(){
         }
       }
     });
-  })
+  });
   
   //reseta lista de busca
   var clearSearch = function() {
@@ -212,7 +224,6 @@ $(document).ready(function(){
     
   // end of cruel dragons
   
-
 });
 
 var startTest = function() {
