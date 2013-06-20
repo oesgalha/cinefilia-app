@@ -82,7 +82,6 @@ $(document).ready(function(){
       loadCinemas();
     },
     error: function(){
-      alert("nao");
       window.moviesData = JSON.parse(localStorage.moviesData);
       populatePosters();
       populateMoviesList();
@@ -106,7 +105,6 @@ $(document).ready(function(){
         localStorage.cinemasData = JSON.stringify(data);
       },
       error: function(){
-        alert("nao");
         window.cinemasData = JSON.parse(localStorage.cinemasData);
         populatePosters();
         populateMoviesList();
