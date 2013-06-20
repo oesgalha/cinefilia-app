@@ -17,12 +17,23 @@ $(document).ready(function(){
     }); 
   }
 
+  // Redimensionar os posters
+  var resizePosters = function() {
+    $('.movie-poster>img').width('auto');
+    $('.movie-poster>img').height($(window).height() - 120);
+  }
+
+  $(window).on("orientationchange", function(event) {
+    resizePosters();
+  });
+
   // Criar posters
   var populatePosters = function(){
     $('#posters-holder').html('');
     $.each(window.moviesData, function(id, movie) {
       $('<div class="movie-poster"><img src="' + movie.img + '"/></div>').appendTo('#posters-holder')
     });
+    resizePosters();
     startSlider();
   };
 
@@ -147,10 +158,11 @@ $(document).ready(function(){
     $('[name="exit"]').click(function(){
       navigator.app.exitApp();
     });
-    var backKeyDown = function() { 
-      if (location.hash == "#main_page" || location.hash == "") {
-        navigator.app.exitApp();
-      }
+  }
+
+  var backKeyDown = function() { 
+    if (location.hash == "#main_page" || location.hash == "") {
+      navigator.app.exitApp();
     }
   }
     
