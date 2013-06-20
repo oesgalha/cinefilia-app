@@ -18,7 +18,13 @@
 
 .movie-poster {
   text-align: center;
-  overflow: hidden;
+}
+
+.movie-poster > img {
+  width: auto;
+  height: 360px;
+  border-radius: 1em 1em 1em 1em;
+  border: 1px solid #333333;
 }
 
 .retangular-movie-poster {
