@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
   // (Re)Iniciar o slider de posters
+ window.moviesList = new Array();
  
   var startSlider = function() {
     if (window.postersSwipe != null) {
@@ -35,6 +36,8 @@ $(document).ready(function(){
   var populateMoviesList = function() {
     $('#movies_list-mp').html('');
     $.each(window.moviesData, function(id, movie) {
+      window.moviesList[movie.id] = movie;
+      window.moviesList[movie.id].horarios = new Array();
       $('<li><a class="retangular-movie-poster" href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_list-mp')
     });
   }
@@ -46,10 +49,28 @@ $(document).ready(function(){
       $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#cinemas_list-mp')
     });
   }
-
+  
+  // Popula a lista de cinemas
+  var populateSessionsList = function() {
+    $.each(window.cinemasData, function(idCinema, cinema) {
+      $.each(cinema.salas, function(idSala, sala) {
+        $.each(sala, function(idDia, dia) {
+          $.each(dia, function(idSessao, sessao) {
+            $.each(sessao.info, function(idInfo, detalhe) {
+                window.moviesList[sessao.filme][detalhe] = true;
+            })
+            temp = {'cinema':idCinema, 'sala':idSala, 'data':idDia, 'hora':idSessao, 'det':sessao.info}
+            window.moviesList[sessao.filme].horarios.push(temp)
+          })
+        })
+      })
+    });
+  }
+  
   // Carregar informações dos filmes
   $.ajax({
     url: 'http://192.168.0.13/helper-cinefilia/movies.json',
+    async: false,
     dataType: 'jsonp',
     jsonpCallback: 'cineffiliamoviescache',
     success: function(data){
@@ -64,10 +85,12 @@ $(document).ready(function(){
   $.ajax({
     url: 'http://192.168.0.13/helper-cinefilia/cinemas.json',
     dataType: 'jsonp',
+    async: false,
     jsonpCallback: 'cineffiliacinemascache',
     success: function(data){
       window.cinemasData = data;
       populateCinemasList();
+      populateSessionsList();
     }
   });
   
