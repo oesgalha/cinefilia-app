@@ -174,19 +174,30 @@
           <a name='exit' href='#' data-icon='delete' data-iconpos="notext"></a>	
         </div>
         <div data-role='content'>
-          <div id='logo-cinema' width="30%" style='float:left' >
-            <!-- imagem pequena do logo do cinema-->
-            <img src='blank'/>
+          <div class="ui-grid-solo">
+            <div class="movies-details-breakpoint ui-block-a">
+              <h1 id="cinema-title"></h1>
+            </div>
           </div>
-          <div id="cinema_info"  width='70%' style='float:left' >
-            <!-- Nome do cinema -->
-            <p><span id='cinema_name'>Kinoplex - Parque D.Pedro</span></p>
-            <!-- Endereço -->
-            <p><span id='cinema_address'>Rua da PQPlandia - Campinas - SP</span></p>
+          <div class="ui-grid-a">
+            <div class="movies-details-breakpoint mini-poster-container ui-block-a">
+              <img id='mini-logo' />
+            </div>
+            <div class="movies-details-breakpoint ui-block-b">
+              <table class='movie-info'>
+                <tr>
+                  <td>Endereço</td>
+                  <td id="address"></td>
+                </tr>
+                <tr>
+                  <td>Tabela de Preços</td>
+                  <td id="price"></td>
+                </tr>
+              </table>
+            </div>
           </div>
-          <div id='cinema_movies_list'>
-            <!-- listview com os posters dos filmes, nome, bolha de classificacao indicativa e bolha com DUB, LEG, NAC, se aplicavel -->
-          </div>
+          <ul id='cinema_movies_list' data-role="listview" data-inset="true">
+          </ul>
         </div>
         <div data-role='footer' data-id="footer">
           <div data-iconpos='left' data-role='navbar'>

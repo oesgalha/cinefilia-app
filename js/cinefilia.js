@@ -61,7 +61,7 @@ $(document).ready(function(){
   var populateCinemasList = function() {
     $('#cinemas_list-mp').html('');
     $.each(window.cinemasData, function(id, cinema) {
-      $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#cinemas_list-mp');
+      $('<li><a href="#cinema_details" href="#cinema_details" data-cinemaid=' + cinema.id + '><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#cinemas_list-mp');
     });
   }
   
@@ -76,7 +76,7 @@ $(document).ready(function(){
     });
     $('<li data-role="list-divider">Cinemas</li>').appendTo('#favs_list-mp');
     $.each(window.cinemasData, function(id, cinema) {
-      $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#favs_list-mp');
+      $('<li><a href="#cinema_details" data-cinemaid=' + cinema.id + '><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#favs_list-mp');
     });
   }
   
@@ -135,6 +135,7 @@ $(document).ready(function(){
         localStorage.cinemasData = JSON.stringify(data);
         populateFavsList();
         resetMoviesListeners();
+        resetCinemasListeners();
       },
       error: function(){
         window.cinemasData = JSON.parse(localStorage.cinemasData);
@@ -142,11 +143,12 @@ $(document).ready(function(){
         populateSessionsList();
         populateFavsList();
         resetMoviesListeners();
+        resetCinemasListeners();
       }
     });
   }
-  //coisas em desenvolvimento pra busca ... CAN'T TOUCH DIS XD
-  //se tiver atrapalhando aí no seu, comente essa parte
+
+  //Dados para Busca
   var maxRating = 18;
 	var language = {ldub:false, lleg:false, lnac:false};
 	var other = {o2d:false, o3d:false, othx:false, opre:false};
@@ -186,6 +188,7 @@ $(document).ready(function(){
     }
   }
   
+  //efetua a busca
   $("#src").click(function(){
     //filtra os filmes
     $('#movies_search_list-mp').html('');
@@ -249,8 +252,40 @@ $(document).ready(function(){
       $('#movies_search_list-mp').listview('refresh');
     }
   };
-    
-  // end of cruel dragons
+
+  var resetCinemasListeners = function() {
+    $('a[href=#cinema_details]').click(function(){
+      var cinema = window.cinemasData[$(this).data('cinemaid')];
+      $('#cinema-title').html(cinema.name);
+      $('#mini-logo').attr('src', cinema.logo);
+      $('#address').html(cinema.addr);
+      $('#price').html(cinema.inte);
+      $('#endereco').html(cinema.addr);
+
+      $('#cinema_movies_list').html('');
+
+      var movies = new Array();
+      $.each(cinema.salas, function(id, sala) {
+        $.each(sala, function(id, data) {
+          $.each(data, function(id, sessao) {
+            movies[sessao.filme] = true
+          })
+        })
+      });
+      if (movies.length > 0) {
+        $('<li data-role="list-divider">Filmes em cartaz :</li>').appendTo('#cinema_movies_list');
+        for (i = 0; i < movies.length; i++) {
+          var movie = window.moviesList[i];
+          $('<li><a name="exhibition" href="#movie_cinema" data-movieid=' + movie.id + ' data-cinemaid=' + cinema.id + '><img src="' + movie.img + '"/><h1>' + movie.name + '</h1></a></li>').appendTo('#cinema_movies_list');
+        }
+        if ($('#cinema_movies_list').hasClass('ui-listview')) {
+          $('#cinema_movies_list').listview('refresh');
+        }
+      }
+      resetExibicaoListeners();
+    });
+  }
+  
   var resetMoviesListeners = function() {
     $('a[href=#movie_details]').click(function(){
       var movie = window.moviesList[$(this).data('movieid')];
