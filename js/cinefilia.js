@@ -255,6 +255,45 @@ $(document).ready(function(){
     
   // end of cruel dragons
   
+  
+    // preenche dados da pagina movie_cinema
+  $('[name="exhibition"]').click(function(){
+
+    //obtem filme e obtem cinema pelo clique
+    var filme_clicado = $(this).data('movie');
+    var cinema_clicado = $(this).data('cinema');
+    var lista = new Array();
+    var datas = new Array();
+    
+    $.each(window.moviesList[filme_clicado].horarios, function (id, sessao) {
+      if (sessao.cinema == cinema_clicado){
+          datas[sessao.data] = true;
+          lista.push(sessao);
+      }
+    })
+    
+    for (data in datas){
+      $('<li data-role="list-divider">'+data+'</li>').appendTo('#exhibitions_list-mp');
+      $.each(lista, function(idL, exibicao){
+        if (exibicao.data == data){
+          var detalhes = '';
+          $.each(exibicao.det, function(idD, detalhe){
+            detalhes += '<span class="ui-btn-up-a cinefilia-bubble">' + detalhe + '</span>'
+          })
+          $('<li><h1>' + exibicao.hora+' - Sala '+exibicao.sala+' - '+detalhes+'</h1>').appendTo('#exhibitions_list-mp')
+        }
+      })
+    }
+    if ($('#exhibitions_list-mp').hasClass('ui-listview')) {
+      $('#exhibitions_list-mp').listview('refresh');
+    }
+  })
+    
+  
+  
+  
+  
+  
 });
 
 var startTest = function() {
@@ -286,3 +325,9 @@ if (typeof(cordova) !== 'undefined') {
   // normal browser test
   $(document).ready(startTest);
 }
+
+
+
+
+
+

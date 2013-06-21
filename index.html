@@ -147,7 +147,7 @@
         </div>
         <ul id='movie_cinemas_list' data-role="listview" data-inset="true">
           <li data-role="list-divider">Em cartaz nos seguintes cinemas:</li>
-          <li><a href="#">
+          <li><a name='exhibition' href="#movie_cinema" data-movie="1" data-cinema="0">
               <img src="http://cinefilia.freetzi.com/images/253783_210730455634982_4598768_n.jpg">
               <h1>Cine Araujo Parque das Bandeiras</h1>
               </a>
@@ -220,6 +220,8 @@
           <a name='exit' href='#' data-icon='delete' data-iconpos="notext"></a>	
         </div>
         <div data-role='content'>
+          <ul id='exhibitions_list-mp' data-role="listview" data-filter-theme="a">
+          </ul>
         </div>
         <div data-role='footer' data-id="footer">
           <div data-iconpos='left' data-role='navbar'>
