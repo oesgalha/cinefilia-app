@@ -53,7 +53,7 @@ $(document).ready(function(){
     $.each(window.moviesData, function(id, movie) {
       window.moviesList[movie.id] = movie;
       window.moviesList[movie.id].horarios = new Array();
-      $('<li><a class="retangular-movie-poster" href="javascript:selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_list-mp');
+      $('<li><a class="retangular-movie-poster" href="#movie_details" onclick="selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_list-mp');
     });
   }
 
@@ -72,7 +72,7 @@ $(document).ready(function(){
     $('<li data-role="list-divider">Filmes</li>').appendTo('#favs_list-mp');
     $.each(window.moviesData, function(id, movie) {
       window.moviesList[movie.id] = movie;
-      $('<li><a href="javascript:selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#favs_list-mp');
+      $('<li><a href="#movie_details" onclick="selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#favs_list-mp');
     });
     $('<li data-role="list-divider">Cinemas</li>').appendTo('#favs_list-mp');
     $.each(window.cinemasData, function(id, cinema) {
@@ -246,7 +246,7 @@ $(document).ready(function(){
   
   // Adiciona filme a lista de busca
   var addMoviesToSearchList = function(movie) {
-    $('<li><a class="retangular-movie-poster" href="javascript:selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp');
+    $('<li><a class="retangular-movie-poster" href="#movie_details" onclick="selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp');
     if ($('#movies_search_list-mp').hasClass('ui-listview')) {
       $('#movies_search_list-mp').listview('refresh');
     }
@@ -284,12 +284,10 @@ $(document).ready(function(){
         $('#movie_cinemas_list').listview('refresh');
       }
     }
-
-    $.mobile.navigate('#movie_details');
   }
   
     // preenche dados da pagina movie_cinema
-  moviesCinemas = function(movie, cinema){
+  window.moviesCinemas = function(movie, cinema){
 
     //obtem filme e obtem cinema pelo clique
     var filme_clicado = movie;
