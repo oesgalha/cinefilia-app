@@ -175,7 +175,7 @@ $(document).ready(function(){
   var onDR = function(){
     // App startado
     document.addEventListener("backbutton", backKeyDown, true);
-    $('[name="exit"]').on('tap',function(){
+    $('[name="exit"]').click(function(){
       navigator.app.exitApp();
     });
   }
@@ -186,7 +186,7 @@ $(document).ready(function(){
     }
   }
   
-  $("#src").on('tap',function(){
+  $("#src").click(function(){
     //filtra os filmes
     $('#movies_search_list-mp').html('');
     var movieName = $("#movieName").val();
