@@ -71,13 +71,9 @@ $(document).ready(function(){
       $('<li><a href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#favs_list-mp')
     });
     $('<li data-role="list-divider">Cinemas</li>').appendTo('#favs_list-mp');
-
-// Problemas aqui
-
-//    $.each(window.cinemasData, function(id, cinema) {
-//      $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#favs_list-mp')
-//    });
-
+    $.each(window.cinemasData, function(id, cinema) {
+      $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#favs_list-mp')
+    });
 
   }
   
@@ -108,18 +104,18 @@ $(document).ready(function(){
       window.moviesData = data;
       populatePosters();
       populateMoviesList();
-      populateFavsList();
       startTest();
       localStorage.moviesData = JSON.stringify(data);
       loadCinemas();
+      populateFavsList();
     },
     error: function(){
       window.moviesData = JSON.parse(localStorage.moviesData);
       populatePosters();
       populateMoviesList();
-      populateFavsList();
       startTest();
       loadCinemas();
+      populateFavsList();
     }
   });
   
