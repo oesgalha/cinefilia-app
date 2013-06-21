@@ -64,9 +64,30 @@ cineffiliacinemascache({
           "info" : ["DUB", "2D", "PRE"]
         }
       }
-    }
+    },
   },
-  "inte": "R$18,00",
-  "meia": "R$9,00"
+  "preco": {
+    "0" : {
+      "desc" : "Salas 1/6 : 2ª e 4ª",
+      "inte" : "R$ 8,00",
+      "meia" : "R$ 8,00"
+    },
+    "1" : {
+      "desc" : "Salas 1/6 :3ª e 5ª",
+      "inte" : "R$ 13,00",
+      "meia" : "R$ 6,50"
+    },
+    "2" : {
+      "desc" : "Salas 1/6 :6ª, Sab, Dom - matine",
+      "inte" : "R$ 15,00",
+      "meia" : "R$ 7,50"
+    },
+    "3" : {
+      "desc" : "Salas 1/6 :6ª, Sab, Dom - noite",
+      "inte" : "R$ 17,00",
+      "meia" : "R$ 8,50"
+    },
+
   }
-});
+}
+});	

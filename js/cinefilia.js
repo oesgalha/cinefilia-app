@@ -259,9 +259,13 @@ $(document).ready(function(){
       $('#cinema-title').html(cinema.name);
       $('#mini-logo').attr('src', cinema.logo);
       $('#address').html(cinema.addr);
-      $('#price').html(cinema.inte);
-      $('#endereco').html(cinema.addr);
 
+      var tabela_precos = '';
+      $.each(cinema.preco, function(id, dia) {
+        tabela_precos += '<tr><td>'+dia.desc+'</td><td>'+dia.inte+'</td><td>'+dia.meia+'</td></tr>';
+      });
+      $('#price').html(tabela_precos);
+      
       $('#cinema_movies_list').html('');
 
       var movies = new Array();
