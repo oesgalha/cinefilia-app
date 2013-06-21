@@ -260,10 +260,11 @@ $(document).ready(function(){
       $('#mini-logo').attr('src', cinema.logo);
       $('#address').html(cinema.addr);
 
-      var tabela_precos = '';
+      var tabela_precos = '<table><tr><th>Dias</th><th>Inteira</th><th>Meia</th></tr>';
       $.each(cinema.preco, function(id, dia) {
         tabela_precos += '<tr><td>'+dia.desc+'</td><td>'+dia.inte+'</td><td>'+dia.meia+'</td></tr>';
       });
+      tabela_precos += '</table>';
       $('#price').html(tabela_precos);
       
       $('#cinema_movies_list').html('');
@@ -278,10 +279,12 @@ $(document).ready(function(){
       });
       if (movies.length > 0) {
         $('<li data-role="list-divider">Filmes em cartaz :</li>').appendTo('#cinema_movies_list');
-        for (i = 0; i < movies.length; i++) {
-          var movie = window.moviesList[i];
-          $('<li><a name="exhibition" href="#movie_cinema" data-movieid=' + movie.id + ' data-cinemaid=' + cinema.id + '><img src="' + movie.img + '"/><h1>' + movie.name + '</h1></a></li>').appendTo('#cinema_movies_list');
-        }
+        $.each(movies, function(id, bool) {
+          if (movies[id]){
+            var movie = window.moviesList[id];
+            $('<li><a name="exhibition" href="#movie_cinema" data-movieid=' + movie.id + ' data-cinemaid=' + cinema.id + '><img src="' + movie.img + '"/><h1>' + movie.name + '</h1></a></li>').appendTo('#cinema_movies_list');
+          }
+        });
         if ($('#cinema_movies_list').hasClass('ui-listview')) {
           $('#cinema_movies_list').listview('refresh');
         }

@@ -78,3 +78,10 @@
     float: none;
   }
 }
+
+@media (max-height: 100px) {
+  .cinemas-details-breakpoint {
+    width: 100% !important;
+    float: none;
+  }
+}

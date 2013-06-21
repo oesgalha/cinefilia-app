@@ -1,4 +1,4 @@
-cineffiliamoviescache({
+﻿cineffiliamoviescache({
 "0":{
  "id":0,
  "name": "The Dark Knight",
@@ -28,5 +28,25 @@ cineffiliamoviescache({
  "dir": ["Fulaninha"],
  "actors":["Alexandre Rodrigues","Leandro Firmino","Phellipe Haagensen"],
  "cat":["Ação", "Drama"],
- "NAC":true}
+ "NAC":true},
+"3":{
+ "id":3,
+ "name": "Além da Escuridão - Star Trek",
+ "img": "http://ia.media-imdb.com/images/M/MV5BMTk2NzczOTgxNF5BMl5BanBnXkFtZTcwODQ5ODczOQ@@._V1._SX640_SY948_.jpg",
+ "sinopse":"Quando a equipe da nave Enterprise é chamada de volta para casa, eles descobrem que uma força do mal, vinda de dentro de sua própria organização, atacou o mundo inteiro, deixando o planeta em estado de crise absoluta. O Capitão Kirk deve reunir toda a equipe e liderar uma grande caça ao homem responsável por essa destruição em massa.",
+ "rat": 12,
+ "dir": ["J.J Abrahms"],
+ "actors":["Chris Pine","Zachary Quinto","Zoe Saldana"],
+ "cat":["Ação", "Aventura", "Sci-Fi"],
+ "NAC":false}, 
+"4":{
+ "id":4,
+ "name": "Avatar",
+ "img": "http://t0.gstatic.com/images?q=tbn:ANd9GcS4YzVQ-eYLLiccE0tVFAx2HD3Q_67j0DnnoStLH1IatxsNh397gg",
+ "sinopse":"Um fuzileiro naval paraplégico enviado à lua Pandora em uma missão torna-se dividido entre seguir suas ordens ou proteger o mundo que ele sente que é a sua casa.",
+ "rat": 12,
+ "dir": ["James Cameron"],
+ "actors":["Sam Worthington","Zoe Saldana","Sigourney Weaver"],
+ "cat":["Ação", "Aventura", "Fantasia"],
+ "NAC":false}, 
 });

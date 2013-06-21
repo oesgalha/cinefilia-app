@@ -1,4 +1,4 @@
-cineffiliacinemascache({
+﻿cineffiliacinemascache({
 "0":{
   "id":0,
   "name":"Cine Araújo Multiplex Parque Das Bandeiras",
@@ -87,7 +87,153 @@ cineffiliacinemascache({
       "inte" : "R$ 17,00",
       "meia" : "R$ 8,50"
     },
-
+  }
+},
+"1":{
+  "id":1,
+  "name":"Kinoplex Parque D. Pedro",
+  "logo":"http://www.kinoplex.com.br/themes/kinoplex/images/header/logo.jpg",
+  "addr":"Av. Guilherme Campos Nº 500 Euc-a18 - J.santa Genebra - Campinas - SP",
+  "salas" : {
+    "2" : {
+      "21/06" : {
+        "18:00" : {
+          "filme" : 3,
+          "info" : ["DUB", "3D"]
+        },
+        "20:40" : {
+          "filme" : 3,
+          "info" : ["DUB", "3D"]
+        }
+      },
+      "22/06" : {
+        "18:00" : {
+          "filme" : 3,
+          "info" : ["DUB", "3D"]
+        },
+        "20:40" : {
+          "filme" : 3,
+          "info" : ["DUB", "3D"]
+        }
+      }
+    },
+    "11" : {
+      "21/06" : {
+        "13:20" : {
+          "filme" : 3,
+          "info" : ["DUB", "2D"]
+        },
+        "16:05" : {
+          "filme" : 3,
+          "info" : ["DUB", "2D"]
+        },
+        "18:45" : {
+          "filme" : 3,
+          "info" : ["DUB", "2D"]
+        },
+        "21:30" : {
+          "filme" : 3,
+          "info" : ["DUB", "2D"]
+        }
+      },
+      "22/06" : {
+        "13:20" : {
+          "filme" : 3,
+          "info" : ["DUB", "2D"]
+        },
+        "16:05" : {
+          "filme" : 3,
+          "info" : ["DUB", "2D"]
+        },
+        "18:45" : {
+          "filme" : 3,
+          "info" : ["DUB", "2D"]
+        },
+        "21:30" : {
+          "filme" : 3,
+          "info" : ["DUB", "2D"]
+        }
+      }
+    },
+  },
+  "preco": {
+    "0" : {
+      "desc" : "2ª feira",
+      "inte" : "R$ 8,00",
+      "meia" : "R$ 4,00"
+    },
+    "1" : {
+      "desc" : "3ª e 5ª feira até 17hs",
+      "inte" : "R$ 16,00",
+      "meia" : "R$ 8,00"
+    },
+    "2" : {
+      "desc" : "3ª e 5ª feira após 17hs",
+      "inte" : "R$ 18,00",
+      "meia" : "R$ 9,00"
+    },
+    "3" : {
+      "desc" : "4ª feira",
+      "inte" : "R$ 15,00",
+      "meia" : "R$ 7,50"
+    },
+    "4" : {
+      "desc" : "6ª, sáb, dom e feriado: até 17h",
+      "inte" : "R$ 20,00",
+      "meia" : "R$ 10,00"
+    },    
+    "5" : {
+      "desc" : "6ª, sáb, dom e feriado: após 17h",
+      "inte" : "R$ 23,00",
+      "meia" : "R$ 11,50"
+    },    
+    "6" : {
+      "desc" : "3D - 2ª feira",
+      "inte" : "R$ 10,00",
+      "meia" : "R$ 6,00"
+    },
+    "7" : {
+      "desc" : "3D - 3ª e 5ª feira",
+      "inte" : "R$ 24,00",
+      "meia" : "R$ 13,00"
+    },
+    "8" : {
+      "desc" : "3D - 4ª feira",
+      "inte" : "R$ 23,00",
+      "meia" : "R$ 12,50"
+    },
+    "9" : {
+      "desc" : "3D - 6ª, sáb, dom e feriado",
+      "inte" : "R$ 26,00",
+      "meia" : "R$ 14,00"
+    },
+  }
+},
+"2":{
+  "id":2,
+  "name":"Casa do Lago",
+  "logo":"http://www.preac.unicamp.br/casadolago/templates/siteground-j15-82/images/logo.png",
+  "addr":"Rua Érico Veríssimo, 1011 - Cidade Universitária Zeferino Vaz - Unicamp Barão Geraldo - Campinas - SP",
+  "salas" : {
+    "1" : {
+      "21/06" : {
+        "16:00" : {
+          "filme" : 4,
+          "info" : ["DUB", "3D"]
+        },
+        "19:00" : {
+          "filme" : 4,
+          "info" : ["DUB", "3D"]
+        }
+      }
+    },
+  },
+  "preco": {
+    "0" : {
+      "desc" : "Grátis",
+      "inte" : "R$ 0,00",
+      "meia" : "R$ 0,00"
+    }
   }
 }
 });	
