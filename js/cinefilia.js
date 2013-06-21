@@ -53,7 +53,7 @@ $(document).ready(function(){
     $.each(window.moviesData, function(id, movie) {
       window.moviesList[movie.id] = movie;
       window.moviesList[movie.id].horarios = new Array();
-      $('<li><a class="retangular-movie-poster" href="#movie_details" onclick="selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_list-mp');
+      $('<li><a class="retangular-movie-poster" href="#movie_details" data-movieid=' + movie.id + '><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_list-mp');
     });
   }
 
@@ -72,7 +72,7 @@ $(document).ready(function(){
     $('<li data-role="list-divider">Filmes</li>').appendTo('#favs_list-mp');
     $.each(window.moviesData, function(id, movie) {
       window.moviesList[movie.id] = movie;
-      $('<li><a href="#movie_details" onclick="selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#favs_list-mp');
+      $('<li><a href="#movie_details" data-movieid=' + movie.id + '><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#favs_list-mp');
     });
     $('<li data-role="list-divider">Cinemas</li>').appendTo('#favs_list-mp');
     $.each(window.cinemasData, function(id, cinema) {
@@ -134,12 +134,14 @@ $(document).ready(function(){
         populateSessionsList();
         localStorage.cinemasData = JSON.stringify(data);
         populateFavsList();
+        resetMoviesListeners();
       },
       error: function(){
         window.cinemasData = JSON.parse(localStorage.cinemasData);
         populateCinemasList();
         populateSessionsList();
         populateFavsList();
+        resetMoviesListeners();
       }
     });
   }
@@ -237,83 +239,87 @@ $(document).ready(function(){
         }
       }
     });
+    resetMoviesListeners();
   });
   
   // Adiciona filme a lista de busca
   var addMoviesToSearchList = function(movie) {
-    $('<li><a class="retangular-movie-poster" href="#movie_details" onclick="selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp');
+    $('<li><a class="retangular-movie-poster" href="#movie_details" data-movieid=' + movie.id + '><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp');
     if ($('#movies_search_list-mp').hasClass('ui-listview')) {
       $('#movies_search_list-mp').listview('refresh');
     }
   };
     
   // end of cruel dragons
-  window.selectMovie = function(id) {
-    $('#gambira').html('OI :D');
-    var movie = window.moviesList[id];
-    $('#gambira').html(movie.name);
-    $('#movie-title').html(movie.name);
-    $('#mini-poster').attr('src', movie.img);
-    $('#categorias').html(movie.cat.join(", "));
-    $('#director').html(movie.dir.join(", "));
-    $('#stars').html(movie.actors.join(", "));
-    $('#rating').html(movie.rat);
-    $('#sinopse').html(movie.sinopse);
+  var resetMoviesListeners = function() {
+    $('a[href=#movie_details]').click(function(){
+      var movie = window.moviesList[$(this).data('movieid')];
+      $('#movie-title').html(movie.name);
+      $('#mini-poster').attr('src', movie.img);
+      $('#categorias').html(movie.cat.join(", "));
+      $('#director').html(movie.dir.join(", "));
+      $('#stars').html(movie.actors.join(", "));
+      $('#rating').html(movie.rat);
+      $('#sinopse').html(movie.sinopse);
 
-    $('#movie_cinemas_list').html('');
+      $('#movie_cinemas_list').html('');
 
-    var cinemas = new Array();
-    $.each(movie.horarios, function(id, horario) {
-      cinemas.push(horario.cinema);
-    });
-    cinemas = cinemas.filter(function(elem, pos) {
-      return cinemas.indexOf(elem) == pos;
-    });
+      var cinemas = new Array();
+      $.each(movie.horarios, function(id, horario) {
+        cinemas.push(horario.cinema);
+      });
+      cinemas = cinemas.filter(function(elem, pos) {
+        return cinemas.indexOf(elem) == pos;
+      });
 
-    if (cinemas.length > 0) {
-      $('<li data-role="list-divider">Em cartaz nos seguintes cinemas:</li>').appendTo('#movie_cinemas_list');
-      for (i = 0; i < cinemas.length; i++) {
-        var cinema = window.cinemasData[cinemas[i]];
-        $('<li><a name="exhibition" href="#movie_cinema" onclick="moviesCinemas('+id+','+cinemas[i]+')"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1></a></li>').appendTo('#movie_cinemas_list');
+      if (cinemas.length > 0) {
+        $('<li data-role="list-divider">Em cartaz nos seguintes cinemas:</li>').appendTo('#movie_cinemas_list');
+        for (i = 0; i < cinemas.length; i++) {
+          var cinema = window.cinemasData[cinemas[i]];
+          $('<li><a name="exhibition" href="#movie_cinema" data-movieid=' + movie.id + ' data-cinemaid=' + cinema.id + '><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1></a></li>').appendTo('#movie_cinemas_list');
+        }
+        if ($('#movie_cinemas_list').hasClass('ui-listview')) {
+          $('#movie_cinemas_list').listview('refresh');
+        }
       }
-      if ($('#movie_cinemas_list').hasClass('ui-listview')) {
-        $('#movie_cinemas_list').listview('refresh');
-      }
-    }
+      resetExibicaoListeners();
+    });
   }
   
+  var resetExibicaoListeners = function() {
     // preenche dados da pagina movie_cinema
-  window.moviesCinemas = function(movie, cinema){
+    $('a[href=#movie_cinema]').click(function(){
 
-    //obtem filme e obtem cinema pelo clique
-    var filme_clicado = movie;
-    var cinema_clicado = cinema;
-    var lista = new Array();
-    var datas = new Array();
-    
-    $.each(window.moviesList[filme_clicado].horarios, function (id, sessao) {
-      if (sessao.cinema == cinema_clicado){
-          datas[sessao.data] = true;
-          lista.push(sessao);
-      }
-    });
-    
-    $('#exhibitions_list-mp').html('');
-    for (data in datas){
-      $('<li data-role="list-divider">'+data+'</li>').appendTo('#exhibitions_list-mp');
-      $.each(lista, function(idL, exibicao){
-        if (exibicao.data == data){
-          var detalhes = '';
-          $.each(exibicao.det, function(idD, detalhe){
-            detalhes += '<span class="ui-btn-up-a cinefilia-bubble">' + detalhe + '</span>'
-          });
-          $('<li><h1>' + exibicao.hora+' - Sala '+exibicao.sala+' - '+detalhes+'</h1>').appendTo('#exhibitions_list-mp');
+      //obtem filme e obtem cinema pelo clique
+      var filme_clicado = $(this).data('movieid');
+      var cinema_clicado = $(this).data('cinemaid');
+      var lista = new Array();
+      var datas = new Array();
+      
+      $.each(window.moviesList[filme_clicado].horarios, function (id, sessao) {
+        if (sessao.cinema == cinema_clicado){
+            datas[sessao.data] = true;
+            lista.push(sessao);
         }
       });
-    }
-    if ($('#exhibitions_list-mp').hasClass('ui-listview')) {
-      $('#exhibitions_list-mp').listview('refresh');
-    }
+      
+      $('#exhibitions_list-mp').html('');
+      for (data in datas){
+        $('<li data-role="list-divider">'+data+'</li>').appendTo('#exhibitions_list-mp');
+        $.each(lista, function(idL, exibicao){
+          if (exibicao.data == data){
+            var detalhes = '';
+            $.each(exibicao.det, function(idD, detalhe){
+              detalhes += '<span class="ui-btn-up-a cinefilia-bubble">' + detalhe + '</span>'
+            });
+            $('<li><h1>' + exibicao.hora+' - Sala '+exibicao.sala+' - '+detalhes+'</h1>').appendTo('#exhibitions_list-mp');
+          }
+        });
+      }
+      if ($('#exhibitions_list-mp').hasClass('ui-listview')) {
+        $('#exhibitions_list-mp').listview('refresh');
+      }
+    });
   }
   
   
