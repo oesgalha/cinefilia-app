@@ -249,9 +249,9 @@ $(document).ready(function(){
     
   // end of cruel dragons
   window.selectMovie = function(id) {
-    alert("oi :D");
+    $('#gambira').html('OI :D');
     var movie = window.moviesList[id];
-    alert(movie);
+    $('#gambira').html(movie.name);
     $('#movie-title').html(movie.name);
     $('#mini-poster').attr('src', movie.img);
     $('#categorias').html(movie.cat.join(", "));
