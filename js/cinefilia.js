@@ -27,6 +27,7 @@ $(document).ready(function(){
     $('.movie-poster>img').width('auto');
     $('.movie-poster>img').height($(window).height() - 120);
     $('#mini-poster').width($(window).width() / 2 - 32);
+    $('#mini-logo').width($(window).width() / 2 - 32);
   }
 
   $(window).on("orientationchange", function(event) {
@@ -416,7 +417,7 @@ $(document).ready(function(){
   
 });
 
-/*var startTest = function() {
+var startTest = function() {
       
 			$('body').imagesLoaded(function($images, $proper, $broken ) {
 
@@ -445,7 +446,6 @@ if (typeof(cordova) !== 'undefined') {
   // normal browser test
   $(document).ready(startTest);
 }
-*/
 
 
 
