@@ -106,7 +106,7 @@ $(document).ready(function(){
   
   // Carregar informações dos filmes
   $.ajax({
-    url: 'http://cinefilia.freetzi.com/json/movies.json',
+    url: 'http://www.students.ic.unicamp.br/~ra108231/cinefilia-app/json/movies.json',
     dataType: 'jsonp',
     jsonpCallback: 'cineffiliamoviescache',
     async: false,
@@ -137,7 +137,7 @@ $(document).ready(function(){
   var loadCinemas = function(){
     // Carregar informações dos cinemas
     $.ajax({
-      url: 'http://cinefilia.freetzi.com/json/cinemas.json',
+      url: 'http://www.students.ic.unicamp.br/~ra108231/cinefilia-app/json/cinemas.json',
       dataType: 'jsonp',
       jsonpCallback: 'cineffiliacinemascache',
       async: false,
