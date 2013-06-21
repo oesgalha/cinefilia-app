@@ -20,7 +20,7 @@
   text-align: center;
 }
 
-.movie-poster > img {
+.movie-poster > a > img {
   border-radius: 1em 1em 1em 1em;
   border: 1px solid #333333;
 }

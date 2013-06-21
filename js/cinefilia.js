@@ -24,8 +24,8 @@ $(document).ready(function(){
 
   // Redimensionar os posters
   var resizePosters = function() {
-    $('.movie-poster>img').width('auto');
-    $('.movie-poster>img').height($(window).height() - 120);
+    $('.movie-poster>a>img').width('auto');
+    $('.movie-poster>a>img').height($(window).height() - 120);
     $('#mini-poster').width($(window).width() / 2 - 32);
     $('#mini-logo').width($(window).width() / 2 - 32);
   }
@@ -38,7 +38,7 @@ $(document).ready(function(){
   var populatePosters = function(){
     $('#posters-holder').html('');
     $.each(window.moviesData, function(id, movie) {
-      $('<div class="movie-poster"><img src="' + movie.img + '"/></div>').appendTo('#posters-holder');
+      $('<div class="movie-poster"><a href="#movie_details" data-movieid=' + movie.id + '><img src="' + movie.img + '"/></a></div>').appendTo('#posters-holder');
     });
     resizePosters();
     startSlider();
