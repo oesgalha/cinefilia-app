@@ -4,6 +4,8 @@ $(document).ready(function(){
   $.mobile.defaultPageTransition = 'none';
 
   window.moviesList = new Array();
+  window.favMovies = {}
+  window.favCinemas = {}
 
   // (Re)Iniciar o slider de posters 
   var startSlider = function() {
@@ -70,14 +72,18 @@ $(document).ready(function(){
   var populateFavsList = function() {
     $('#favs_list-mp').html('');
     $('<li data-role="list-divider">Filmes</li>').appendTo('#favs_list-mp');
-    $.each(window.moviesData, function(id, movie) {
-      window.moviesList[movie.id] = movie;
+    $.each(window.favMovies, function(id, movie) {
       $('<li><a href="#movie_details" data-movieid=' + movie.id + '><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#favs_list-mp');
     });
     $('<li data-role="list-divider">Cinemas</li>').appendTo('#favs_list-mp');
-    $.each(window.cinemasData, function(id, cinema) {
+    $.each(window.favCinemas, function(id, cinema) {
       $('<li><a href="#cinema_details" data-cinemaid=' + cinema.id + '><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#favs_list-mp');
     });
+    if ($('#favs_list-mp').hasClass('ui-listview')) {
+      $('#favs_list-mp').listview('refresh');
+    }
+    resetMoviesListeners();
+    resetCinemasListeners();
   }
   
   // Popula a lista de cinemas
@@ -107,15 +113,21 @@ $(document).ready(function(){
       window.moviesData = data;
       populatePosters();
       populateMoviesList();
-      startTest();
+      //startTest();
       localStorage.moviesData = JSON.stringify(data);
+      if (localStorage.getItem("favMovies") !== null) {
+        window.favMovies = JSON.parse(localStorage.favMovies);
+      }
       loadCinemas();
     },
     error: function(){
       window.moviesData = JSON.parse(localStorage.moviesData);
       populatePosters();
       populateMoviesList();
-      startTest();
+      //startTest();
+      if (localStorage.getItem("favMovies") !== null) {
+        window.favMovies = JSON.parse(localStorage.favMovies);
+      }
       loadCinemas();
     }
   });
@@ -133,17 +145,19 @@ $(document).ready(function(){
         populateCinemasList();
         populateSessionsList();
         localStorage.cinemasData = JSON.stringify(data);
+        if (localStorage.getItem("favCinemas") !== null) {
+          window.favCinemas = JSON.parse(localStorage.favCinemas);
+        }
         populateFavsList();
-        resetMoviesListeners();
-        resetCinemasListeners();
       },
       error: function(){
         window.cinemasData = JSON.parse(localStorage.cinemasData);
         populateCinemasList();
         populateSessionsList();
+        if (localStorage.getItem("favCinemas") !== null) {
+          window.favCinemas = JSON.parse(localStorage.favCinemas);
+        }
         populateFavsList();
-        resetMoviesListeners();
-        resetCinemasListeners();
       }
     });
   }
@@ -260,6 +274,24 @@ $(document).ready(function(){
       $('#mini-logo').attr('src', cinema.logo);
       $('#address').html(cinema.addr);
 
+      if (window.favCinemas[cinema.id] === undefined) {
+        $('#add-fav-cinema').removeClass('ui-btn-active');
+      } else {
+        $('#add-fav-cinema').addClass('ui-btn-active');
+      }
+      $('#add-fav-cinema').unbind();
+      $('#add-fav-cinema').click(function(){
+        if (window.favCinemas[cinema.id] === undefined) {
+          window.favCinemas[cinema.id] = cinema;
+          $('#add-fav-cinema').addClass('ui-btn-active');
+        } else {
+          delete window.favCinemas[cinema.id];
+          $('#add-fav-cinema').removeClass('ui-btn-active');
+        }
+        localStorage.favCinemas = JSON.stringify(window.favCinemas);
+        populateFavsList();
+      });
+
       var tabela_precos = '<table><tr><th>Dias</th><th>Inteira</th><th>Meia</th></tr>';
       $.each(cinema.preco, function(id, dia) {
         tabela_precos += '<tr><td>'+dia.desc+'</td><td>'+dia.inte+'</td><td>'+dia.meia+'</td></tr>';
@@ -303,6 +335,23 @@ $(document).ready(function(){
       $('#stars').html(movie.actors.join(", "));
       $('#rating').html(movie.rat);
       $('#sinopse').html(movie.sinopse);
+      if (window.favMovies[movie.id] === undefined) {
+        $('#add-fav-movie').removeClass('ui-btn-active');
+      } else {
+        $('#add-fav-movie').addClass('ui-btn-active');
+      }
+      $('#add-fav-movie').unbind();
+      $('#add-fav-movie').click(function(){
+        if (window.favMovies[movie.id] === undefined) {
+          window.favMovies[movie.id] = movie;
+          $('#add-fav-movie').addClass('ui-btn-active');
+        } else {
+          delete window.favMovies[movie.id];
+          $('#add-fav-movie').removeClass('ui-btn-active');
+        }
+        localStorage.favMovies = JSON.stringify(window.favMovies);
+        populateFavsList();
+      });
 
       $('#movie_cinemas_list').html('');
 
@@ -367,7 +416,7 @@ $(document).ready(function(){
   
 });
 
-var startTest = function() {
+/*var startTest = function() {
       
 			$('body').imagesLoaded(function($images, $proper, $broken ) {
 
@@ -396,7 +445,7 @@ if (typeof(cordova) !== 'undefined') {
   // normal browser test
   $(document).ready(startTest);
 }
-
+*/
 
 
 
