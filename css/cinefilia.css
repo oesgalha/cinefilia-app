@@ -47,6 +47,7 @@
 
 .ui-li-desc {
   overflow: visible;
+  white-space: normal;
 }
 
 .ui-content {
