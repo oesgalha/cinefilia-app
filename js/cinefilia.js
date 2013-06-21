@@ -131,16 +131,15 @@ $(document).ready(function(){
       success: function(data){
         window.cinemasData = data;
         populateCinemasList();
-        populateFavsList();
         populateSessionsList();
         localStorage.cinemasData = JSON.stringify(data);
+        populateFavsList();
       },
       error: function(){
         window.cinemasData = JSON.parse(localStorage.cinemasData);
-        populatePosters();
-        populateMoviesList();
+        populateCinemasList();
+        populateSessionsList();
         populateFavsList();
-        startTest();
       }
     });
   }
@@ -279,7 +278,7 @@ $(document).ready(function(){
       $('<li data-role="list-divider">Em cartaz nos seguintes cinemas:</li>').appendTo('#movie_cinemas_list');
       for (i = 0; i < cinemas.length; i++) {
         var cinema = window.cinemasData[cinemas[i]];
-        $('<li><a href="#movie_cinema"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1></a></li>').appendTo('#movie_cinemas_list');
+        $('<li><a name="exhibition" href="#movie_cinema" onclick="moviesCinemas('+id+','+cinemas[i]+')"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1></a></li>').appendTo('#movie_cinemas_list');
       }
       if ($('#movie_cinemas_list').hasClass('ui-listview')) {
         $('#movie_cinemas_list').listview('refresh');
@@ -290,11 +289,11 @@ $(document).ready(function(){
   }
   
     // preenche dados da pagina movie_cinema
-  $('[name="exhibition"]').click(function(){
+  moviesCinemas = function(movie, cinema){
 
     //obtem filme e obtem cinema pelo clique
-    var filme_clicado = $(this).data('movie');
-    var cinema_clicado = $(this).data('cinema');
+    var filme_clicado = movie;
+    var cinema_clicado = cinema;
     var lista = new Array();
     var datas = new Array();
     
@@ -305,6 +304,7 @@ $(document).ready(function(){
       }
     });
     
+    $('#exhibitions_list-mp').html('');
     for (data in datas){
       $('<li data-role="list-divider">'+data+'</li>').appendTo('#exhibitions_list-mp');
       $.each(lista, function(idL, exibicao){
@@ -320,7 +320,9 @@ $(document).ready(function(){
     if ($('#exhibitions_list-mp').hasClass('ui-listview')) {
       $('#exhibitions_list-mp').listview('refresh');
     }
-  });
+  }
+  
+  
 });
 
 var startTest = function() {
