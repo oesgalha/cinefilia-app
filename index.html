@@ -112,46 +112,40 @@
       <div data-role='content'>
         <div class="ui-grid-solo">
           <div class="movies-details-breakpoint ui-block-a">
-            <h1>The Dark Knight</h1>
+            <h1 id="movie-title"></h1>
           </div>
         </div>
         <div class="ui-grid-a">
           <div class="movies-details-breakpoint mini-poster-container ui-block-a">
-            <img id='mini-poster' src='http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1._SX640_SY948_.jpg' />
+            <img id='mini-poster' />
           </div>
           <div class="movies-details-breakpoint ui-block-b">
             <table class='movie-info'>
               <tr>
                 <td>Categoria</td>
-                <td>Ação, Drama</td>
+                <td id="categorias"></td>
               </tr>
               <tr>
                 <td>Direção</td>
-                <td>Christopher Nolan</td>
+                <td id="director"></td>
               </tr>
               <tr>
                 <td>Elenco</td>
-                <td>Christian Bale, Heath Ledger, Aaron Eckhart</td>
+                <td id="stars"></td>
               </tr>
               <tr>
                 <td>Classificação</td>
-                <td>12</td>
+                <td id="rating"></td>
               </tr>
             </table>
           </div>
         </div>
         <div class="ui-grid-solo">
           <div class="movies-details-breakpoint ui-block-a">
-            <h5>O Morcegão vai aprontar de tudo e mais um pouco nessas altas diversoes</h5>
+            <h5 id="sinopse"></h5>
           </div>
         </div>
         <ul id='movie_cinemas_list' data-role="listview" data-inset="true">
-          <li data-role="list-divider">Em cartaz nos seguintes cinemas:</li>
-          <li><a href="#">
-              <img src="http://cinefilia.freetzi.com/images/253783_210730455634982_4598768_n.jpg">
-              <h1>Cine Araujo Parque das Bandeiras</h1>
-              </a>
-          </li>
         </ul>
 	    </div>
       <div data-role='footer' data-id="footer">

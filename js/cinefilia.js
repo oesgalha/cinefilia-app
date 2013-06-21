@@ -1,8 +1,11 @@
 $(document).ready(function(){
 
-  // (Re)Iniciar o slider de posters
+  // Remover transição
+  $.mobile.defaultPageTransition = 'none';
+
   window.moviesList = new Array();
- 
+
+  // (Re)Iniciar o slider de posters 
   var startSlider = function() {
     if (window.postersSwipe != null) {
       window.postersSwipe.kill;
@@ -32,7 +35,7 @@ $(document).ready(function(){
   var populatePosters = function(){
     $('#posters-holder').html('');
     $.each(window.moviesData, function(id, movie) {
-      $('<div class="movie-poster"><img src="' + movie.img + '"/></div>').appendTo('#posters-holder')
+      $('<div class="movie-poster"><img src="' + movie.img + '"/></div>').appendTo('#posters-holder');
     });
     resizePosters();
     startSlider();
@@ -50,7 +53,7 @@ $(document).ready(function(){
     $.each(window.moviesData, function(id, movie) {
       window.moviesList[movie.id] = movie;
       window.moviesList[movie.id].horarios = new Array();
-      $('<li><a class="retangular-movie-poster" href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_list-mp')
+      $('<li><a class="retangular-movie-poster" href="javascript:selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_list-mp');
     });
   }
 
@@ -58,7 +61,7 @@ $(document).ready(function(){
   var populateCinemasList = function() {
     $('#cinemas_list-mp').html('');
     $.each(window.cinemasData, function(id, cinema) {
-      $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#cinemas_list-mp')
+      $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#cinemas_list-mp');
     });
   }
   
@@ -69,11 +72,11 @@ $(document).ready(function(){
     $('<li data-role="list-divider">Filmes</li>').appendTo('#favs_list-mp');
     $.each(window.moviesData, function(id, movie) {
       window.moviesList[movie.id] = movie;
-      $('<li><a href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#favs_list-mp')
+      $('<li><a href="javascript:selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#favs_list-mp');
     });
     $('<li data-role="list-divider">Cinemas</li>').appendTo('#favs_list-mp');
     $.each(window.cinemasData, function(id, cinema) {
-      $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#favs_list-mp')
+      $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#favs_list-mp');
     });
 
   }
@@ -87,8 +90,8 @@ $(document).ready(function(){
             $.each(sessao.info, function(idInfo, detalhe) {
                 window.moviesList[sessao.filme][detalhe] = true;
             })
-            temp = {'cinema':idCinema, 'sala':idSala, 'data':idDia, 'hora':idSessao, 'det':sessao.info}
-            window.moviesList[sessao.filme].horarios.push(temp)
+            temp = {'cinema':idCinema, 'sala':idSala, 'data':idDia, 'hora':idSessao, 'det':sessao.info};
+            window.moviesList[sessao.filme].horarios.push(temp);
           })
         })
       })
@@ -151,19 +154,19 @@ $(document).ready(function(){
 	var other = {o2d:false, o3d:false, othx:false, opre:false};
 		
   $(":radio").click(this, function()  {
-      maxRating = this.id
+      maxRating = this.id;
   });  
     
   $(":checkbox").click(this, function() {
-		var type = this.id.substring(0,1)
-		var type2 = this.id
+		var type = this.id.substring(0,1);
+		var type2 = this.id;
 				
 		switch(type){	
       case 'l':
-        language[type2] = !language[type2]
+        language[type2] = !language[type2];
         break;
       case 'o':
-        other[type2] = !other[type2]
+        other[type2] = !other[type2];
         break;
     }
 	})
@@ -188,11 +191,11 @@ $(document).ready(function(){
   $("#src").click(function(){
     //filtra os filmes
     clearSearch();
-    var movieName = $("#movieName").val()
+    var movieName = $("#movieName").val();
     var initialList = new Array();
     
-    var search_language = ((language.ldub != language.lleg)  || (language.ldub != language.lnac) || (language.lleg != language.lnac))
-    var search_dimension = (other.o2d != other.o3d)
+    var search_language = ((language.ldub != language.lleg)  || (language.ldub != language.lnac) || (language.lleg != language.lnac));
+    var search_dimension = (other.o2d != other.o3d);
     
     var search_language_array = new Array();
     if (search_language){
@@ -211,12 +214,12 @@ $(document).ready(function(){
     $.each(window.moviesData, function(id, movie) {
       if ((movieName!='' && (movie.name.toUpperCase().indexOf(movieName.toUpperCase()) != -1) && (movie.rat <= maxRating))
         ||(movieName=='' && (movie.rat <= maxRating))){
-        initialList.push(movie)
+        initialList.push(movie);
       }
-    })
+    });
     
     $.each(initialList, function(idMovie, movie) {
-      show = false
+      show = false;
       //verifica se tem um dos idiomas de search_language_array
       if (search_language_array.length>0){
         for (each in search_language_array){
@@ -246,15 +249,46 @@ $(document).ready(function(){
   
   // Adiciona filme a lista de busca
   var addMoviesToSearchList = function(movie) {
-    $('<li><a class="retangular-movie-poster" href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp')
+    $('<li><a class="retangular-movie-poster" href="javascript:selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp')
     if ($('#movies_search_list-mp').hasClass('ui-listview')) {
       $('#movies_search_list-mp').listview('refresh');
     }
   };
     
-    
   // end of cruel dragons
   
+  window.selectMovie = function(id) {
+    window.selectedMovieId = id;
+    var movie = window.moviesList[id];
+    $('#movie-title').html(movie.name);
+    $('#mini-poster').attr('src', movie.img);
+    $('#categorias').html(movie.cat.join(", "));
+    $('#director').html(movie.dir.join(", "));
+    $('#stars').html(movie.actors.join(", "));
+    $('#rating').html(movie.rat);
+    $('#sinopse').html(movie.sinopse);
+
+    $('#movie_cinemas_list').html('');
+
+    var cinemas = new Array();
+    $.each(movie.horarios, function(id, horario) {
+      cinemas.push(horario.cinema);
+    });
+    cinemas = cinemas.filter(function(elem, pos) {
+      return cinemas.indexOf(elem) == pos;
+    });
+
+    if (cinemas.length > 0) {
+      $('<li data-role="list-divider">Em cartaz nos seguintes cinemas:</li>').appendTo('#movie_cinemas_list');
+      for (i = 0; i < cinemas.length; i++) {
+        var cinema = window.cinemasData[cinemas[i]];
+        $('<li><a href="#movie_cinema"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1></a></li>').appendTo('#movie_cinemas_list');
+      }
+    }
+
+    $.mobile.navigate('#movie_details');
+  }
+
 });
 
 var startTest = function() {
