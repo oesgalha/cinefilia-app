@@ -109,6 +109,21 @@
         <a name='exit' href='#' data-icon='delete' data-iconpos="notext"></a>	
       </div>
       <div data-role='content'>
+          <div id='mini-poster' width="30%" style='float:left' >
+            <!-- mini poster do filme -->
+            <img src='blank'/>
+          </div>
+        <div id="movie_info"  width='70%' style='float:left' >
+          <!-- Nome do filme e bolha da classificação indicativa ao lado-->
+          <p><span id='movie_title'>The Dark Knight</span> <span id='movie_rating'>12</span></p>
+          <!-- Atores -->
+          <p><span id='movie_actors'>Heath Ledger, Cristopher Nolas, Chris Bale</span></p>
+          <!-- Sinopse-->
+          <p><span id='movie_synopsis'>O Morcegão vai aprontar de tudo e mais um pouco nessas altas diversoes</span></p>
+        </div>
+        <div id='movie_cinemas_list'>
+          <!-- listview com os logos dos cinemas, todos linkam para a pagina movie_cinema -->
+        </div>
 	    </div>
       <div data-role='footer' data-id="footer">
         <div data-iconpos='left' data-role='navbar'>
@@ -136,6 +151,19 @@
           <a name='exit' href='#' data-icon='delete' data-iconpos="notext"></a>	
         </div>
         <div data-role='content'>
+          <div id='logo-cinema' width="30%" style='float:left' >
+            <!-- imagem pequena do logo do cinema-->
+            <img src='blank'/>
+          </div>
+          <div id="cinema_info"  width='70%' style='float:left' >
+            <!-- Nome do cinema -->
+            <p><span id='cinema_name'>Kinoplex - Parque D.Pedro</span></p>
+            <!-- Endereço -->
+            <p><span id='cinema_address'>Rua da PQPlandia - Campinas - SP</span></p>
+          </div>
+          <div id='cinema_movies_list'>
+            <!-- listview com os posters dos filmes, nome, bolha de classificacao indicativa e bolha com DUB, LEG, NAC, se aplicavel -->
+          </div>
         </div>
         <div data-role='footer' data-id="footer">
           <div data-iconpos='left' data-role='navbar'>
