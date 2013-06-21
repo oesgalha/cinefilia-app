@@ -186,7 +186,7 @@ $(document).ready(function(){
   
   $("#src").on('tap',function(){
     //filtra os filmes
-    clearSearch();
+    $('#movies_search_list-mp').html('');
     var movieName = $("#movieName").val();
     var initialList = new Array();
     
@@ -239,11 +239,6 @@ $(document).ready(function(){
     });
   });
   
-  //reseta lista de busca
-  var clearSearch = function() {
-    $('#movies_search_list-mp').html('');
-  }
-  
   // Adiciona filme a lista de busca
   var addMoviesToSearchList = function(movie) {
     $('<li><a class="retangular-movie-poster" href="#movie_details" onclick="selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp');
@@ -254,8 +249,9 @@ $(document).ready(function(){
     
   // end of cruel dragons
   window.selectMovie = function(id) {
-    window.selectedMovieId = id;
+    alert("oi :D");
     var movie = window.moviesList[id];
+    alert(movie);
     $('#movie-title').html(movie.name);
     $('#mini-poster').attr('src', movie.img);
     $('#categorias').html(movie.cat.join(", "));
