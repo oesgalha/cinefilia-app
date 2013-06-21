@@ -173,7 +173,7 @@ $(document).ready(function(){
   var onDR = function(){
     // App startado
     document.addEventListener("backbutton", backKeyDown, true);
-    $('[name="exit"]').click(function(){
+    $('[name="exit"]').on('tap',function(){
       navigator.app.exitApp();
     });
   }
@@ -184,7 +184,7 @@ $(document).ready(function(){
     }
   }
   
-  $("#src").click(function(){
+  $("#src").on('tap',function(){
     //filtra os filmes
     clearSearch();
     var movieName = $("#movieName").val();
