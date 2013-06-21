@@ -62,6 +62,22 @@ $(document).ready(function(){
     });
   }
   
+  
+  // Popula a lista de favoritos
+  var populateFavsList = function() {
+    $('#favs_list-mp').html('');
+    $('<li data-role="list-divider">Filmes</li>').appendTo('#favs_list-mp');
+    $.each(window.moviesData, function(id, movie) {
+      window.moviesList[movie.id] = movie;
+      $('<li><a href="#movie_details"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#favs_list-mp')
+    });
+    $('<li data-role="list-divider">Cinemas</li>').appendTo('#favs_list-mp');
+    $.each(window.cinemasData, function(id, cinema) {
+      $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#favs_list-mp')
+    });
+
+  }
+  
   // Popula a lista de cinemas
   var populateSessionsList = function() {
     $.each(window.cinemasData, function(idCinema, cinema) {
@@ -92,6 +108,7 @@ $(document).ready(function(){
       startTest();
       localStorage.moviesData = JSON.stringify(data);
       loadCinemas();
+      populateFavsList();
     },
     error: function(){
       window.moviesData = JSON.parse(localStorage.moviesData);
@@ -99,6 +116,7 @@ $(document).ready(function(){
       populateMoviesList();
       startTest();
       loadCinemas();
+      populateFavsList();
     }
   });
   
@@ -113,6 +131,7 @@ $(document).ready(function(){
       success: function(data){
         window.cinemasData = data;
         populateCinemasList();
+        populateFavsList();
         populateSessionsList();
         localStorage.cinemasData = JSON.stringify(data);
       },
@@ -120,6 +139,7 @@ $(document).ready(function(){
         window.cinemasData = JSON.parse(localStorage.cinemasData);
         populatePosters();
         populateMoviesList();
+        populateFavsList();
         startTest();
       }
     });
