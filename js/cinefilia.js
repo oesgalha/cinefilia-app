@@ -283,6 +283,9 @@ $(document).ready(function(){
         var cinema = window.cinemasData[cinemas[i]];
         $('<li><a href="#movie_cinema"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1></a></li>').appendTo('#movie_cinemas_list');
       }
+      if ($('#movie_cinemas_list').hasClass('ui-listview')) {
+        $('#movie_cinemas_list').listview('refresh');
+      }
     }
 
     $.mobile.navigate('#movie_details');
