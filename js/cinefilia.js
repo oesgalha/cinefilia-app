@@ -252,7 +252,7 @@ $(document).ready(function(){
     
   // end of cruel dragons
   var resetMoviesListeners = function() {
-    $('a[href=#movie_details]').on('tap',function(){
+    $('a[href=#movie_details]').on('touchend',function(){
 
       $('#gambira').html("oi")
 
@@ -291,7 +291,7 @@ $(document).ready(function(){
   
   var resetExibicaoListeners = function() {
     // preenche dados da pagina movie_cinema
-    $('a[href=#movie_cinema]').on('tap',function(){
+    $('a[href=#movie_cinema]').on('touchend',function(){
 
       //obtem filme e obtem cinema pelo clique
       var filme_clicado = $(this).data('movieid');
