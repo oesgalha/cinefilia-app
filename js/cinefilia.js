@@ -78,7 +78,6 @@ $(document).ready(function(){
     $.each(window.cinemasData, function(id, cinema) {
       $('<li><a href="#cinema_details"><img src="' + cinema.logo + '"/><h1>' + cinema.name + '</h1><p>' + cinema.addr + '</p></a></li>').appendTo('#favs_list-mp');
     });
-
   }
   
   // Popula a lista de cinemas
@@ -89,12 +88,12 @@ $(document).ready(function(){
           $.each(dia, function(idSessao, sessao) {
             $.each(sessao.info, function(idInfo, detalhe) {
                 window.moviesList[sessao.filme][detalhe] = true;
-            })
+            });
             temp = {'cinema':idCinema, 'sala':idSala, 'data':idDia, 'hora':idSessao, 'det':sessao.info};
             window.moviesList[sessao.filme].horarios.push(temp);
-          })
-        })
-      })
+          });
+        });
+      });
     });
   }
   
@@ -111,7 +110,6 @@ $(document).ready(function(){
       startTest();
       localStorage.moviesData = JSON.stringify(data);
       loadCinemas();
-      populateFavsList();
     },
     error: function(){
       window.moviesData = JSON.parse(localStorage.moviesData);
@@ -119,7 +117,6 @@ $(document).ready(function(){
       populateMoviesList();
       startTest();
       loadCinemas();
-      populateFavsList();
     }
   });
   
@@ -169,7 +166,7 @@ $(document).ready(function(){
         other[type2] = !other[type2];
         break;
     }
-	})
+	});
 			
   // Listener app startado
   document.addEventListener("deviceready", onDR, false);
@@ -187,7 +184,7 @@ $(document).ready(function(){
       navigator.app.exitApp();
     }
   }
-    
+  
   $("#src").click(function(){
     //filtra os filmes
     clearSearch();
@@ -204,7 +201,7 @@ $(document).ready(function(){
       if (language.lnac) search_language_array.push('NAC');
     }
     
-    var required_array = Array()
+    var required_array = new Array();
     if ((search_dimension)){
       other.o2d ? required_array.push('2D') : required_array.push('3D');
     }
@@ -212,8 +209,7 @@ $(document).ready(function(){
     if (other.opre) required_array.push('PRE');
     
     $.each(window.moviesData, function(id, movie) {
-      if ((movieName!='' && (movie.name.toUpperCase().indexOf(movieName.toUpperCase()) != -1) && (movie.rat <= maxRating))
-        ||(movieName=='' && (movie.rat <= maxRating))){
+      if ((movieName!='' && (movie.name.toUpperCase().indexOf(movieName.toUpperCase()) != -1) && (movie.rat <= maxRating))||(movieName=='' && (movie.rat <= maxRating))) {
         initialList.push(movie);
       }
     });
@@ -223,8 +219,9 @@ $(document).ready(function(){
       //verifica se tem um dos idiomas de search_language_array
       if (search_language_array.length>0){
         for (each in search_language_array){
-          if (movie[search_language_array[each]] != undefined && movie[search_language_array[each]])
+          if (movie[search_language_array[each]] != undefined && movie[search_language_array[each]]) {
             show = true;
+          }
         }
       }
       else {show = true;}  
@@ -232,8 +229,9 @@ $(document).ready(function(){
       if (show){
         //verifica se tem todos de required_array
         for (each in required_array){
-          if (movie[required_array[each]] == undefined || !movie[required_array[each]])
+          if (movie[required_array[each]] == undefined || !movie[required_array[each]]) {
             show = false;
+          }
         }
         if (show){
           addMoviesToSearchList(movie);
@@ -249,7 +247,7 @@ $(document).ready(function(){
   
   // Adiciona filme a lista de busca
   var addMoviesToSearchList = function(movie) {
-    $('<li><a class="retangular-movie-poster" href="javascript:selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp')
+    $('<li><a class="retangular-movie-poster" href="javascript:selectMovie(' + movie.id + ')"><img src="' + movie.img + '"/><h1>' + movie.name + '</h1><p><span class="ui-btn-up-a cinefilia-bubble">' + movie.rat + '</span></p></a></li>').appendTo('#movies_search_list-mp');
     if ($('#movies_search_list-mp').hasClass('ui-listview')) {
       $('#movies_search_list-mp').listview('refresh');
     }
@@ -305,7 +303,7 @@ $(document).ready(function(){
           datas[sessao.data] = true;
           lista.push(sessao);
       }
-    })
+    });
     
     for (data in datas){
       $('<li data-role="list-divider">'+data+'</li>').appendTo('#exhibitions_list-mp');
@@ -314,15 +312,15 @@ $(document).ready(function(){
           var detalhes = '';
           $.each(exibicao.det, function(idD, detalhe){
             detalhes += '<span class="ui-btn-up-a cinefilia-bubble">' + detalhe + '</span>'
-          })
-          $('<li><h1>' + exibicao.hora+' - Sala '+exibicao.sala+' - '+detalhes+'</h1>').appendTo('#exhibitions_list-mp')
+          });
+          $('<li><h1>' + exibicao.hora+' - Sala '+exibicao.sala+' - '+detalhes+'</h1>').appendTo('#exhibitions_list-mp');
         }
-      })
+      });
     }
     if ($('#exhibitions_list-mp').hasClass('ui-listview')) {
       $('#exhibitions_list-mp').listview('refresh');
     }
-  })
+  });
 });
 
 var startTest = function() {

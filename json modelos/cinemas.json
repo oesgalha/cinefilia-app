@@ -1,7 +1,8 @@
 cineffiliacinemascache({
 "0":{
+  "id":0,
   "name":"Cine Araújo Multiplex Parque Das Bandeiras",
-  "logo":"http://192.168.0.13/helper-cinefilia/253783_210730455634982_4598768_n.jpg",
+  "logo":"http://cinefilia.freetzi.com/images/253783_210730455634982_4598768_n.jpg",
   "addr":"Avenida John Boyd Dunlop, 3900 - Campinas - SP",
   "salas" : {
     "1" : {
