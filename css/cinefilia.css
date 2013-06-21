@@ -1,5 +1,5 @@
 [data-role=page]{height: 100% !important; position:relative !important;}
-[data-role=footer]{bottom:0; position:absolute !important; top: auto !important; width:100%;}
+[data-role=footer]{bottom:0; position:fixed !important; top: auto !important; width:100%; z-index: 999;}
 
 .swipe {
   overflow: hidden;
@@ -16,7 +16,7 @@
   position: relative;
 }
 
-.movie-poster {
+.movie-poster, .mini-poster-container {
   text-align: center;
 }
 
@@ -36,8 +36,21 @@
   border-radius: 1em 1em 1em 1em;
 }
 
+.movie-info > tbody > tr > td { 
+  background: repeat scroll 0 0 #5E87B0;
+  padding: 1px;
+}
+
+.movie-info > tbody > tr >  td + td { 
+  background: repeat scroll 0 0 #333333;
+}
+
 .ui-li-desc {
   overflow: visible;
+}
+
+.ui-content {
+  padding-bottom: 42px;
 }
 
 /* Tirar text-shadow para melhorar performance em androids antigos */
@@ -56,4 +69,11 @@
   box-shadow: none !important;
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
+}
+
+@media (max-width: 400px) {
+  .movies-details-breakpoint {
+    width: 100% !important;
+    float: none;
+  }
 }

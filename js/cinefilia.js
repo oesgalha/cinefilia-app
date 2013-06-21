@@ -21,10 +21,11 @@ $(document).ready(function(){
   var resizePosters = function() {
     $('.movie-poster>img').width('auto');
     $('.movie-poster>img').height($(window).height() - 120);
+    $('#mini-poster').width($(window).width() / 2 - 32);
   }
 
   $(window).on("orientationchange", function(event) {
-    resizePosters();
+    window.setTimeout(resizePosters, 500);
   });
 
   // Criar posters

@@ -12,6 +12,7 @@
     <script src='js/jquery.imagesloaded.min.js'></script>
     <script src="phonegap.js"></script>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <meta name="viewport" content="width=device-width">
   </head>
     <body>
     <div data-role='page' data-theme='a' id='main_page'>
@@ -109,21 +110,49 @@
         <a name='exit' href='#' data-icon='delete' data-iconpos="notext"></a>	
       </div>
       <div data-role='content'>
-          <div id='mini-poster' width="30%" style='float:left' >
-            <!-- mini poster do filme -->
-            <img src='blank'/>
+        <div class="ui-grid-solo">
+          <div class="movies-details-breakpoint ui-block-a">
+            <h1>The Dark Knight</h1>
           </div>
-        <div id="movie_info"  width='70%' style='float:left' >
-          <!-- Nome do filme e bolha da classificação indicativa ao lado-->
-          <p><span id='movie_title'>The Dark Knight</span> <span id='movie_rating'>12</span></p>
-          <!-- Atores -->
-          <p><span id='movie_actors'>Heath Ledger, Cristopher Nolas, Chris Bale</span></p>
-          <!-- Sinopse-->
-          <p><span id='movie_synopsis'>O Morcegão vai aprontar de tudo e mais um pouco nessas altas diversoes</span></p>
         </div>
-        <div id='movie_cinemas_list'>
-          <!-- listview com os logos dos cinemas, todos linkam para a pagina movie_cinema -->
+        <div class="ui-grid-a">
+          <div class="movies-details-breakpoint mini-poster-container ui-block-a">
+            <img id='mini-poster' src='http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1._SX640_SY948_.jpg' />
+          </div>
+          <div class="movies-details-breakpoint ui-block-b">
+            <table class='movie-info'>
+              <tr>
+                <td>Categoria</td>
+                <td>Ação, Drama</td>
+              </tr>
+              <tr>
+                <td>Direção</td>
+                <td>Christopher Nolan</td>
+              </tr>
+              <tr>
+                <td>Elenco</td>
+                <td>Christian Bale, Heath Ledger, Aaron Eckhart</td>
+              </tr>
+              <tr>
+                <td>Classificação</td>
+                <td>12</td>
+              </tr>
+            </table>
+          </div>
         </div>
+        <div class="ui-grid-solo">
+          <div class="movies-details-breakpoint ui-block-a">
+            <h5>O Morcegão vai aprontar de tudo e mais um pouco nessas altas diversoes</h5>
+          </div>
+        </div>
+        <ul id='movie_cinemas_list' data-role="listview" data-inset="true">
+          <li data-role="list-divider">Em cartaz nos seguintes cinemas:</li>
+          <li><a href="#">
+              <img src="http://cinefilia.freetzi.com/images/253783_210730455634982_4598768_n.jpg">
+              <h1>Cine Araujo Parque das Bandeiras</h1>
+              </a>
+          </li>
+        </ul>
 	    </div>
       <div data-role='footer' data-id="footer">
         <div data-iconpos='left' data-role='navbar'>
